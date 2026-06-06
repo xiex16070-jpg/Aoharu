@@ -25,11 +25,12 @@ const GitHubSync = (() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) return saved;
 
-    // 没有 Token 时弹出输入框
+    // 没有 Token 时 — 优先提示使用管理员面板中的 Token 设置
+    // 如果已登录管理员，使用 prompt 作为后备
     const inputToken = prompt(
       '🔑 请输入 GitHub Personal Access Token\n\n' +
-      '（仅本次会话有效，输入后会自动保存）\n\n' +
-      '权限要求：Contents (Read and Write)', 
+      '提示：登录管理员后可在顶部工具栏点击「🔑 Token」按钮设置。\n\n' +
+      '权限要求：Contents (Read and Write)',
       ''
     );
 
@@ -39,24 +40,21 @@ const GitHubSync = (() => {
       return inputToken;
     } else {
       console.warn('❌ Token 输入取消或格式错误');
+      console.info('💡 提示：登录管理员后可点击顶部工具栏的「🔑 Token」按钮设置');
       throw new Error('GitHub Token 未提供');
     }
   }
 
-  function isConfigured() {
-    const token = localStorage.getItem(STORAGE_KEY);
-    return !!(token && token.startsWith('github_pat_') && token.length > 40);
-  }
-
-  // Token 管理工具（管理员可在控制台调用）
+  // Token 管理工具（可在控制台调用，也可通过管理员面板「🔑 Token」按钮操作）
   window.GitHubTokenManager = {
     setToken() {
+      console.info('💡 推荐使用管理员面板中的「🔑 Token」按钮设置。');
       const token = prompt('请输入完整的 GitHub PAT (github_pat_ 开头):');
       if (token && token.startsWith('github_pat_') && token.length > 40) {
         localStorage.setItem(STORAGE_KEY, token);
         alert('✅ Token 已成功保存！');
         console.log('✅ Token 已更新');
-      } else {
+      } else if (token) {
         alert('❌ Token 格式错误，必须以 github_pat_ 开头且长度足够');
       }
     },
@@ -69,6 +67,7 @@ const GitHubSync = (() => {
         console.log('前20位:', token.substring(0, 20) + '...');
       } else {
         console.log('❌ Token 未设置');
+        console.info('💡 登录管理员后点击顶部「🔑 Token」按钮设置');
       }
     },
 

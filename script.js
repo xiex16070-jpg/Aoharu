@@ -298,6 +298,7 @@ function showAdminUI() {
   updateSyncStatusUI();
   if (syncStatusBadge) syncStatusBadge.style.display = '';
   if (adminSyncNowBtn) adminSyncNowBtn.style.display = '';
+  if (adminTokenBtn) adminTokenBtn.style.display = '';
   // 尝试从 GitHub 拉取最新数据
   if (typeof GitHubSync !== 'undefined' && GitHubSync.isConfigured()) {
     GitHubSync.tryAutoSyncFromGitHub().then(result => {
@@ -320,6 +321,7 @@ function hideAdminUI() {
   // 隐藏 GitHub 同步控件
   if (syncStatusBadge) syncStatusBadge.style.display = 'none';
   if (adminSyncNowBtn) adminSyncNowBtn.style.display = 'none';
+  if (adminTokenBtn) adminTokenBtn.style.display = 'none';
 }
 
 async function doLogin(username, password) {
@@ -373,6 +375,7 @@ const adminLogoutBtn = $('#adminLogoutBtn');
 // GitHub Sync DOM
 const syncStatusBadge = $('#syncStatusBadge');
 const adminSyncNowBtn = $('#adminSyncNowBtn');
+const adminTokenBtn = $('#adminTokenBtn');
 
 // Admin Music Controls
 const adminMusicControls = $('#adminMusicControls');
@@ -391,6 +394,17 @@ const musicAddBtn = $('#musicAddBtn');
 const musicAddError = $('#musicAddError');
 const musicTrackList = $('#musicTrackList');
 const musicTrackCount = $('#musicTrackCount');
+
+// Token Modal
+const tokenModal = $('#tokenModal');
+const tokenModalClose = $('#tokenModalClose');
+const tokenInput = $('#tokenInput');
+const tokenToggleVisibility = $('#tokenToggleVisibility');
+const tokenSaveBtn = $('#tokenSaveBtn');
+const tokenClearBtn = $('#tokenClearBtn');
+const tokenError = $('#tokenError');
+const tokenSuccess = $('#tokenSuccess');
+const tokenStatusValue = $('#tokenStatusValue');
 
 // Login Modal
 const loginModal = $('#loginModal');
@@ -858,6 +872,171 @@ function initMusicManagement() {
       }
     });
   }
+}
+
+// ============================================================
+//  🔑 Token 管理弹窗
+// ============================================================
+
+/** 刷新 Token 状态显示 */
+function updateTokenStatusUI() {
+  if (!tokenStatusValue) return;
+  if (typeof GitHubSync !== 'undefined' && GitHubSync.isConfigured()) {
+    const token = localStorage.getItem('gallery_github_sync');
+    if (token) {
+      const masked = token.substring(0, 20) + '...' + token.substring(token.length - 8);
+      tokenStatusValue.textContent = '✅ 已配置';
+      tokenStatusValue.title = masked;
+      tokenStatusValue.className = 'token-status-value configured';
+      tokenInput.value = '';
+      tokenInput.placeholder = masked;
+    } else {
+      tokenStatusValue.textContent = '✅ 已配置';
+      tokenStatusValue.title = '';
+      tokenStatusValue.className = 'token-status-value configured';
+      tokenInput.placeholder = '（已保存）';
+    }
+  } else {
+    tokenStatusValue.textContent = '❌ 未配置';
+    tokenStatusValue.title = '请设置 GitHub Personal Access Token';
+    tokenStatusValue.className = 'token-status-value unconfigured';
+    tokenInput.placeholder = '输入 GitHub PAT（github_pat_ 开头）...';
+  }
+}
+
+function openTokenModal() {
+  if (!tokenModal) return;
+  tokenInput.value = '';
+  tokenError.style.display = 'none';
+  tokenSuccess.style.display = 'none';
+  tokenInput.type = 'password';
+  if (tokenToggleVisibility) tokenToggleVisibility.textContent = '👁';
+  updateTokenStatusUI();
+  tokenModal.classList.add('active');
+  tokenModal.setAttribute('aria-hidden', 'false');
+  setTimeout(() => tokenInput.focus(), 100);
+}
+
+function closeTokenModal() {
+  if (!tokenModal) return;
+  tokenModal.classList.remove('active');
+  tokenModal.setAttribute('aria-hidden', 'true');
+  tokenInput.value = '';
+}
+
+function saveToken() {
+  if (!tokenInput || !tokenError || !tokenSuccess) return;
+  tokenError.style.display = 'none';
+  tokenSuccess.style.display = 'none';
+
+  const token = (tokenInput.value || '').trim();
+  if (!token) {
+    tokenError.textContent = '请输入 Token';
+    tokenError.style.display = 'block';
+    return;
+  }
+
+  if (!token.startsWith('github_pat_')) {
+    tokenError.textContent = 'Token 必须以 github_pat_ 开头';
+    tokenError.style.display = 'block';
+    return;
+  }
+
+  if (token.length < 40) {
+    tokenError.textContent = 'Token 长度不足，请检查是否完整复制';
+    tokenError.style.display = 'block';
+    return;
+  }
+
+  // 保存到 localStorage
+  try {
+    localStorage.setItem('gallery_github_sync', token);
+    tokenSuccess.textContent = '✅ Token 已保存！同步功能已就绪。';
+    tokenSuccess.style.display = 'block';
+    tokenInput.value = '';
+    updateTokenStatusUI();
+    // 更新同步状态
+    if (isAdmin) updateSyncStatusUI();
+    // 3秒后自动关闭
+    setTimeout(() => {
+      closeTokenModal();
+      tokenSuccess.style.display = 'none';
+    }, 2000);
+  } catch (e) {
+    tokenError.textContent = '保存失败：' + (e.message || '存储空间不足');
+    tokenError.style.display = 'block';
+  }
+}
+
+function clearToken() {
+  if (!tokenError || !tokenSuccess) return;
+  tokenError.style.display = 'none';
+  tokenSuccess.style.display = 'none';
+
+  if (!confirm('确定要清除已保存的 GitHub Token 吗？清除后同步功能将不可用。')) {
+    return;
+  }
+
+  localStorage.removeItem('gallery_github_sync');
+  // 同时清除同步状态缓存
+  localStorage.removeItem('gallery_github_sync_status');
+  tokenInput.value = '';
+  updateTokenStatusUI();
+  tokenSuccess.textContent = '🗑 Token 已清除';
+  tokenSuccess.style.display = 'block';
+  if (isAdmin) updateSyncStatusUI();
+  setTimeout(() => {
+    closeTokenModal();
+    tokenSuccess.style.display = 'none';
+  }, 1500);
+}
+
+/** 初始化 Token 管理弹窗事件 */
+function initTokenManagement() {
+  if (!tokenModal || !adminTokenBtn) return;
+
+  // 打开弹窗
+  adminTokenBtn.addEventListener('click', openTokenModal);
+
+  // 关闭弹窗
+  tokenModalClose.addEventListener('click', closeTokenModal);
+  tokenModal.addEventListener('click', (e) => {
+    if (e.target === tokenModal) closeTokenModal();
+  });
+
+  // ESC 关闭
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && tokenModal.classList.contains('active')) {
+      closeTokenModal();
+    }
+  });
+
+  // 保存
+  tokenSaveBtn.addEventListener('click', saveToken);
+
+  // 清除
+  tokenClearBtn.addEventListener('click', clearToken);
+
+  // 显示/隐藏 Token
+  if (tokenToggleVisibility) {
+    tokenToggleVisibility.addEventListener('click', () => {
+      if (tokenInput.type === 'password') {
+        tokenInput.type = 'text';
+        tokenToggleVisibility.textContent = '🙈';
+      } else {
+        tokenInput.type = 'password';
+        tokenToggleVisibility.textContent = '👁';
+      }
+    });
+  }
+
+  // Enter 键保存
+  tokenInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      saveToken();
+    }
+  });
 }
 
 // ============================================================
@@ -2170,6 +2349,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initBackgroundMusic();
   initAdminMusicControls();
   initMusicManagement();
+  initTokenManagement();
   renderGallery();
 
   resizeCanvas();

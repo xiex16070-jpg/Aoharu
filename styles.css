@@ -1809,7 +1809,106 @@ h2 {
   to { opacity: 1; }
 }
 
-/* ===== GitHub 同步状态指示器 ===== */
+/* ===== Token 管理弹窗 ===== */
+.modal-token {
+  max-width: 480px;
+}
+
+.token-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 250, 244, 0.7);
+  border: 1px solid var(--border-light);
+  margin-bottom: 4px;
+}
+
+.token-status-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.token-status-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.token-status-value.configured {
+  color: var(--success);
+}
+
+.token-status-value.unconfigured {
+  color: var(--danger);
+}
+
+.token-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.token-input {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+.token-vis-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background: rgba(255, 248, 240, 0.9);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.token-vis-btn:hover {
+  background: rgba(139, 122, 107, 0.12);
+  transform: scale(1.06);
+}
+
+.token-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.token-actions .form-submit {
+  flex: 1;
+}
+
+.token-actions .form-delete-btn {
+  flex-shrink: 0;
+  padding: 10px 18px;
+}
+
+.token-hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  opacity: 0.65;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.token-hint code {
+  background: rgba(139, 122, 107, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
 .sync-status-badge {
   font-size: 0.82rem;
   font-weight: 600;

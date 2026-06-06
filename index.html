@@ -50,6 +50,7 @@
       <div class="admin-bar-right">
         <span id="syncStatusBadge" class="sync-status-badge" style="display:none;" title="GitHub 同步状态"></span>
         <button id="adminSyncNowBtn" class="btn btn-secondary" title="立即同步到 GitHub" style="display:none;">🔄 同步</button>
+        <button id="adminTokenBtn" class="btn btn-secondary" title="设置 GitHub Token" style="display:none;">🔑 Token</button>
         <button id="adminMusicMgmtBtn" class="btn btn-secondary" title="管理背景音乐">🎵 音乐管理</button>
         <button id="adminAddBtn" class="btn admin-add-btn" title="添加新作品">➕ 添加作品</button>
         <button id="adminLogoutBtn" class="btn btn-secondary" title="退出管理">🚪 退出</button>
@@ -204,6 +205,34 @@
         <span id="musicTrackCount" class="music-track-count"></span>
       </div>
       <div id="musicTrackList" class="music-track-list"></div>
+    </div>
+  </div>
+
+  <!-- ===== Token 管理弹窗 ===== -->
+  <div id="tokenModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-token">
+      <button class="modal-close" id="tokenModalClose" aria-label="关闭 Token 管理">✕</button>
+      <div class="modal-icon">🔑</div>
+      <h3 class="modal-title">GitHub Token 管理</h3>
+      <p class="modal-desc">设置 GitHub Personal Access Token 以启用同步功能。需要 <code>Contents (Read and Write)</code> 权限。</p>
+
+      <div class="token-status-row" id="tokenStatusRow">
+        <span class="token-status-label">当前状态：</span>
+        <span class="token-status-value" id="tokenStatusValue">⏳ 检测中...</span>
+      </div>
+
+      <div class="token-input-row">
+        <input type="password" id="tokenInput" class="form-input token-input" placeholder="输入 GitHub PAT（github_pat_ 开头）..." maxlength="256" autocomplete="off">
+        <button id="tokenToggleVisibility" class="token-vis-btn" title="显示/隐藏">👁</button>
+      </div>
+      <p id="tokenError" class="form-error" style="display:none;"></p>
+      <p id="tokenSuccess" class="form-success" style="display:none;"></p>
+
+      <div class="token-actions">
+        <button id="tokenSaveBtn" class="btn form-submit">💾 保存 Token</button>
+        <button id="tokenClearBtn" class="btn form-delete-btn">🗑 清除 Token</button>
+      </div>
+      <p class="token-hint">💡 Token 保存在浏览器本地存储中，仅用于操作你自己的 GitHub 仓库。</p>
     </div>
   </div>
 
