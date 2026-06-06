@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查看作品 - 贝贝的收藏</title>
+  <meta name="description" content="贝贝的温暖收藏馆 - 作品详情">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fef9f0;
+      --surface: rgba(255, 252, 247, 0.92);
+      --text: #3d2e1f;
+      --text-heading: #2a1f14;
+      --muted: #8b7a6b;
+      --accent: #7cb89c;
+      --accent-strong: #e8986e;
+      --accent-green-light: #a8d8b9;
+      --danger: #e07070;
+      --border-light: rgba(139, 122, 107, 0.12);
+      --border-strong: rgba(139, 122, 107, 0.2);
+      --shadow-sm: 0 8px 32px rgba(139, 122, 107, 0.08);
+      --shadow-md: 0 20px 70px rgba(139, 122, 107, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", Roboto, sans-serif;
+      background:
+        linear-gradient(172deg, #fef9f0 0%, #fdf3ea 18%, #fef6ee 35%, #fdf0e2 55%, #fef8f3 72%, #fdf2e9 100%);
+      color: var(--text);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 600px at 15% 20%, rgba(255, 220, 180, 0.15), transparent 50%),
+        radial-gradient(ellipse 600px 500px at 85% 25%, rgba(124, 184, 156, 0.09), transparent 48%),
+        radial-gradient(ellipse 500px 400px at 55% 60%, rgba(255, 228, 200, 0.10), transparent 45%),
+        radial-gradient(ellipse 400px 350px at 75% 78%, rgba(232, 152, 110, 0.07), transparent 42%),
+        radial-gradient(ellipse 350px 300px at 22% 80%, rgba(168, 216, 185, 0.07), transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 122, 107, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 122, 107, 0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    #sakuraCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== 顶部导航栏 ===== */
+    .detail-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 10px 18px;
+      background: rgba(255, 252, 247, 0.9);
+      border-bottom: 1px solid var(--border-light);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 2px 20px rgba(139, 122, 107, 0.04);
+    }
+
+    .detail-topbar-left,
+    .detail-topbar-center,
+    .detail-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .detail-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-light);
+      background: rgba(139, 122, 107, 0.06);
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .detail-btn:hover {
+      background: rgba(139, 122, 107, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .detail-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .detail-btn.primary {
+      background: linear-gradient(135deg, #7cb89c, #8fbc8f);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+    }
+
+    .detail-btn.primary:hover {
+      box-shadow: 0 8px 22px rgba(124, 184, 156, 0.25);
+    }
+
+    .detail-counter {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .detail-title-text {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      max-width: 260px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .detail-cat-badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(124, 184, 156, 0.12);
+      color: var(--accent);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    /* ===== 主布局：左右分栏 ===== */
+    .detail-main {
+      position: fixed;
+      inset: 54px 0 0 0;
+      display: flex;
+      z-index: 1;
+    }
+
+    /* ===== 左侧：图片区域 ===== */
+    .detail-image-pane {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at center, rgba(124, 184, 156, 0.06), transparent 55%),
+        radial-gradient(ellipse at center, rgba(232, 152, 110, 0.04), transparent 50%);
+      min-width: 0;
+      position: relative;
+    }
+
+    .detail-image-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(139, 122, 107, 0.12);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .detail-image-wrapper img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 150px);
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      border-radius: 4px;
+    }
+
+    .detail-image-loader {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(139, 122, 107, 0.08);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .detail-image-loader.loading { opacity: 1; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== 右侧：信息面板 ===== */
+    .detail-info-pane {
+      width: 380px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 252, 247, 0.9);
+      border-left: 1px solid var(--border-light);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 28px 24px;
+      gap: 24px;
+      box-shadow: -4px 0 40px rgba(139, 122, 107, 0.04);
+      scroll-behavior: smooth;
+    }
+
+    .detail-info-section {
+      animation: fadeSlideIn 0.5s ease both;
+    }
+
+    .detail-info-section:nth-child(1) { animation-delay: 0.05s; }
+    .detail-info-section:nth-child(2) { animation-delay: 0.15s; }
+    .detail-info-section:nth-child(3) { animation-delay: 0.25s; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-info-section h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .detail-panel-work-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-heading);
+      word-break: break-word;
+    }
+
+    .detail-panel-cat-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(124, 184, 156, 0.12);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .detail-panel-memory {
+      color: var(--muted);
+      line-height: 1.9;
+      white-space: pre-wrap;
+      font-size: 0.93rem;
+      word-break: break-word;
+    }
+
+    .detail-panel-empty {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.88rem;
+      opacity: 0.7;
+    }
+
+    .detail-info-divider {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 4px 0;
+    }
+
+    .detail-admin-edit-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(232, 152, 110, 0.25);
+      background: rgba(232, 152, 110, 0.1);
+      color: var(--accent-strong);
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: none;
+    }
+
+    .detail-admin-edit-btn.visible {
+      display: block;
+    }
+
+    .detail-admin-edit-btn:hover {
+      background: rgba(232, 152, 110, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* ===== 提示标注 ===== */
+    .detail-image-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(255, 248, 240, 0.9);
+      color: var(--muted);
+      font-size: 0.78rem;
+      pointer-events: none;
+      opacity: 0.55;
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 900px) {
+      .detail-main {
+        flex-direction: column;
+      }
+
+      .detail-image-pane {
+        flex: none;
+        height: 50%;
+        padding: 12px;
+      }
+
+      .detail-image-wrapper img {
+        max-height: calc(50vh - 60px);
+      }
+
+      .detail-info-pane {
+        width: 100%;
+        flex-shrink: 1;
+        flex: 1;
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+        border-radius: 20px 20px 0 0;
+        padding: 20px 18px;
+        box-shadow: 0 -4px 30px rgba(139, 122, 107, 0.06);
+      }
+
+      .detail-title-text { display: none; }
+      .detail-cat-badge { display: none; }
+      .detail-image-hint { display: none; }
+    }
+
+    @media (max-width: 500px) {
+      .detail-topbar { padding: 8px 10px; gap: 8px; }
+      .detail-btn { padding: 6px 10px; font-size: 0.78rem; }
+      .detail-counter { font-size: 0.8rem; }
+      .detail-info-pane { padding: 16px 14px; gap: 16px; }
+      .detail-panel-work-title { font-size: 1.2rem; }
+      .detail-image-pane { padding: 8px; }
+    }
+
+    /* ===== 滚动条 ===== */
+    .detail-info-pane::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .detail-info-pane::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .detail-info-pane::-webkit-scrollbar-thumb {
+      background: rgba(139, 122, 107, 0.12);
+      border-radius: 999px;
+    }
+
+    .detail-info-pane::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 122, 107, 0.22);
+    }
+
+    /* ===== 管理编辑弹窗 ===== */
+    .detail-edit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .detail-edit-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .detail-edit-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(42, 31, 20, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .detail-edit-panel {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px 24px;
+      border-radius: 20px;
+      background: rgba(255, 252, 247, 0.98);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 30px 80px rgba(139, 122, 107, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transform: translateY(16px) scale(0.96);
+      transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .detail-edit-modal.active .detail-edit-panel {
+      transform: translateY(0) scale(1);
+    }
+
+    .detail-edit-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      background: rgba(255, 248, 240, 0.9);
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .detail-edit-close:hover {
+      background: rgba(139, 122, 107, 0.1);
+    }
+
+    .detail-edit-icon {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .detail-edit-title {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      color: var(--text-heading);
+    }
+
+    .detail-edit-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .detail-edit-label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .detail-edit-label span {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .detail-edit-input,
+    .detail-edit-textarea,
+    .detail-edit-select {
+      padding: 11px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: rgba(255, 250, 244, 0.9);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .detail-edit-input:focus,
+    .detail-edit-textarea:focus,
+    .detail-edit-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 184, 156, 0.1);
+    }
+
+    .detail-edit-textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.6;
+    }
+
+    .detail-edit-select option {
+      background: #fffbf5;
+      color: var(--text);
+    }
+
+    .detail-edit-success {
+      color: #6aab7c;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(106, 171, 124, 0.08);
+    }
+
+    .detail-edit-submit {
+      width: 100%;
+      padding: 13px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #7cb89c, #8fbc8f);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .detail-edit-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(124, 184, 156, 0.25);
+    }
+
+    @media (max-width: 500px) {
+      .detail-edit-panel {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+    }
+
+    /* ===== 快捷键提示 ===== */
+    .shortcuts-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(42, 31, 20, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .shortcuts-panel {
+      background: rgba(255, 252, 247, 0.98);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      min-width: 300px;
+      font-size: 0.88rem;
+      line-height: 2;
+      color: var(--text);
+    }
+
+    .shortcuts-panel h3 {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .shortcuts-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 16px;
+    }
+
+    .shortcuts-grid .key {
+      font-weight: 700;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 樱花飘落画布 -->
+  <canvas id="sakuraCanvas"></canvas>
+
+  <!-- 顶部导航 -->
+  <div class="detail-topbar">
+    <div class="detail-topbar-left">
+      <button id="detailBackBtn" class="detail-btn" title="返回画廊">← 返回画廊</button>
+      <button id="detailPrevBtn" class="detail-btn" title="上一张">◂ 上一张</button>
+      <button id="detailNextBtn" class="detail-btn" title="下一张">下一张 ▸</button>
+    </div>
+    <div class="detail-topbar-center">
+      <span class="detail-counter" id="detailCounter"></span>
+      <span class="detail-title-text" id="detailTitle"></span>
+      <span class="detail-cat-badge" id="detailCatBadge"></span>
+    </div>
+    <div class="detail-topbar-right">
+      <button id="detailHelpBtn" class="detail-btn" title="快捷键">⌨️</button>
+    </div>
+  </div>
+
+  <!-- 主布局：左右分栏 -->
+  <div class="detail-main">
+    <!-- 左侧：图片区域 -->
+    <div class="detail-image-pane" id="detailImagePane">
+      <div class="detail-image-wrapper">
+        <img id="detailImage" src="" alt="" draggable="false">
+        <div class="detail-image-loader" id="detailImageLoader"></div>
+      </div>
+      <div class="detail-image-hint">🖼 ← → 切换 · ? 快捷键</div>
+    </div>
+
+    <!-- 右侧：信息面板 -->
+    <div class="detail-info-pane" id="detailInfoPane">
+      <div class="detail-info-section">
+        <h3>🌸 作品名称</h3>
+        <p class="detail-panel-work-title" id="detailPanelWorkTitle"></p>
+        <span class="detail-panel-cat-badge" id="detailPanelCatBadge"></span>
+      </div>
+
+      <hr class="detail-info-divider">
+
+      <div class="detail-info-section">
+        <h3>📝 贝贝的回忆</h3>
+        <p class="detail-panel-memory" id="detailPanelMemory"></p>
+        <p class="detail-panel-empty" id="detailPanelEmpty" style="display:none;">✏️ 等待贝贝写下回忆...</p>
+      </div>
+
+      <hr class="detail-info-divider">
+
+      <div class="detail-info-section">
+        <button id="detailAdminEditBtn" class="detail-admin-edit-btn">✏️ 编辑此作品（管理）</button>
+      </div>
+
+      <div class="detail-info-section" style="margin-top:auto; padding-top:12px;">
+        <p style="font-size:0.75rem;color:var(--muted);opacity:0.5;">💚 每一张作品，都是珍贵的回忆</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 管理编辑弹窗 ===== -->
+  <div id="detailEditModal" class="detail-edit-modal" aria-hidden="true">
+    <div class="detail-edit-backdrop"></div>
+    <div class="detail-edit-panel">
+      <button id="detailEditClose" class="detail-edit-close" aria-label="关闭编辑">✕</button>
+      <div class="detail-edit-icon">✏️</div>
+      <h3 class="detail-edit-title">编辑作品信息</h3>
+      <form id="detailEditForm" class="detail-edit-form" autocomplete="off">
+        <label class="detail-edit-label">
+          <span>作品名称</span>
+          <input type="text" id="detailEditTitle" class="detail-edit-input" placeholder="输入作品名称" maxlength="200">
+        </label>
+        <label class="detail-edit-label">
+          <span>回忆简介</span>
+          <textarea id="detailEditNote" class="detail-edit-textarea" rows="5" placeholder="写下你与这个作品的回忆..." maxlength="5000"></textarea>
+        </label>
+        <label class="detail-edit-label">
+          <span>所属分类</span>
+          <select id="detailEditCategory" class="detail-edit-select"></select>
+        </label>
+        <p id="detailEditSuccess" class="detail-edit-success" style="display:none;">✅ 已保存</p>
+        <button type="submit" class="detail-edit-submit">💾 保存修改</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 清单数据（提供分类信息）-->
+  <script src="manifest.js"></script>
+  <script src="github-api.js"></script>
+
+  <script>
+    // ============================================================
+    //  详情页逻辑 — v2 清单驱动 + URL 参数 + 触摸滑动
+    // ============================================================
+
+    const SESSION_KEY = 'gallery_session_sources';
+    const AUTH_KEY = 'gallery_admin_auth';
+    const STORAGE_KEY = 'gallery_admin_data';
+
+    // 从清单加载分类
+    const MANIFEST = (typeof GALLERY_MANIFEST !== 'undefined') ? GALLERY_MANIFEST : null;
+    const categories = MANIFEST ? MANIFEST.categories.map(c => ({ id: c.id, name: c.name, icon: c.icon })) : [
+      { id: 1, name: '入坑和启蒙', icon: '🌱' },
+      { id: 2, name: '青春和热爱', icon: '💫' },
+      { id: 3, name: '那些无可替代的夏天', icon: '☀️' },
+      { id: 4, name: '近来的优秀作品', icon: '🌟' },
+      { id: 5, name: '其他优秀作品', icon: '✨' }
+    ];
+
+    const $ = (s) => document.querySelector(s);
+
+    const detailImage = $('#detailImage');
+    const detailImageLoader = $('#detailImageLoader');
+    const detailCounter = $('#detailCounter');
+    const detailTitle = $('#detailTitle');
+    const detailCatBadge = $('#detailCatBadge');
+    const detailBackBtn = $('#detailBackBtn');
+    const detailPrevBtn = $('#detailPrevBtn');
+    const detailNextBtn = $('#detailNextBtn');
+    const detailHelpBtn = $('#detailHelpBtn');
+    const detailPanelWorkTitle = $('#detailPanelWorkTitle');
+    const detailPanelCatBadge = $('#detailPanelCatBadge');
+    const detailPanelMemory = $('#detailPanelMemory');
+    const detailPanelEmpty = $('#detailPanelEmpty');
+    const detailAdminEditBtn = $('#detailAdminEditBtn');
+    const detailImagePane = $('#detailImagePane');
+
+    // 编辑弹窗 DOM
+    const detailEditModal = $('#detailEditModal');
+    const detailEditClose = $('#detailEditClose');
+    const detailEditForm = $('#detailEditForm');
+    const detailEditTitle = $('#detailEditTitle');
+    const detailEditNote = $('#detailEditNote');
+    const detailEditCategory = $('#detailEditCategory');
+    const detailEditSuccess = $('#detailEditSuccess');
+    let detailEditCurrentFilename = null;
+
+    let imageSources = [];
+    let currentIndex = -1;
+    let preloadCache = new Map();
+
+    // ============================================================
+    //  🛡️ 安全工具函数
+    // ============================================================
+    function escapeHtml(str) {
+      if (!str || typeof str !== 'string') return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function sanitizeText(str, maxLen) {
+      if (!str || typeof str !== 'string') return '';
+      return str.slice(0, maxLen).replace(/<[^>]*>/g, '').trim();
+    }
+
+    function safeParseJSON(raw, fallback) {
+      if (!raw || typeof raw !== 'string') return fallback;
+      try {
+        const parsed = JSON.parse(raw);
+        if (typeof parsed !== 'object' || parsed === null) return fallback;
+        return parsed;
+      } catch (e) { return fallback; }
+    }
+
+    function safeGetStorage(key) {
+      try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+
+    // ===== 从清单构建数据源 =====
+    function buildSourcesFromManifest() {
+      if (MANIFEST && MANIFEST.images && MANIFEST.images.length > 0) {
+        return MANIFEST.images.map(img => ({
+          name: img.name,
+          src: img.src,
+          category: img.category,
+          title: img.name,
+          note: '',
+          size: img.size,
+          mtime: img.mtime
+        }));
+      }
+      return null;
+    }
+
+    // ===== 初始化 =====
+    function init() {
+      // 多数据源回退：localStorage → manifest → URL 参数
+      const raw = safeGetStorage(SESSION_KEY);
+      let sources = safeParseJSON(raw, null);
+
+      if (!sources || sources.length === 0) {
+        sources = buildSourcesFromManifest();
+      }
+
+      if (!sources || sources.length === 0) {
+        // 从 URL 参数构建最小数据
+        const params = new URLSearchParams(window.location.search);
+        const src = params.get('src');
+        const name = params.get('name') || (src ? src.split('/').pop() : '');
+        if (src && name) {
+          sources = [{ name, src, category: 5, title: name, note: '' }];
+        }
+      }
+
+      imageSources = sources || [];
+
+      // 合并 localStorage 中的编辑数据
+      mergeWorksData();
+
+      // 读取当前索引
+      const params = new URLSearchParams(window.location.search);
+      const idxParam = params.get('index');
+      currentIndex = parseInt(idxParam) || 0;
+
+      if (imageSources.length === 0 || currentIndex < 0 || currentIndex >= imageSources.length) {
+        // 优雅降级
+        document.body.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:20px;background:#fef9f0;color:#3d2e1f;font-family:Inter,'PingFang SC','Microsoft YaHei',sans-serif;">
+            <p style="font-size:1.2rem;">🌸 无法加载作品数据</p>
+            <p style="color:#8b7a6b;font-size:0.95rem;">请从画廊页面重新打开，或检查 manifest.js 是否存在</p>
+            <a href="index.html" style="color:#7cb89c;font-size:1rem;text-decoration:none;padding:10px 20px;border-radius:999px;border:1px solid rgba(124,184,156,0.3);transition:all 0.2s ease;">← 返回画廊</a>
+          </div>`;
+        return;
+      }
+
+      loadCurrentImage();
+      bindEvents();
+      updateDocumentTitle();
+      initSakura();
+      preloadAdjacent();
+    }
+
+    function mergeWorksData() {
+      const raw = safeGetStorage(STORAGE_KEY);
+      const data = safeParseJSON(raw, {});
+      imageSources = imageSources.map((item, i) => {
+        const saved = data[item.name];
+        if (saved) {
+          return {
+            ...item,
+            title: sanitizeText(saved.title, 200) || getDefaultTitle(item.name, i),
+            note: sanitizeText(saved.note, 5000) || '',
+            category: (typeof saved.category === 'number' && saved.category >= 1 && saved.category <= 5) ? saved.category : (item.category || 5)
+          };
+        }
+        return { ...item, title: getDefaultTitle(item.name, i), note: '' };
+      });
+    }
+
+    function getDefaultTitle(filename, index) {
+      const nameWithoutExt = filename.replace(/\.[^.]+$/, '');
+      if (nameWithoutExt.startsWith('微信图片_')) {
+        const datePart = nameWithoutExt.substring(5, 13);
+        if (datePart && /^\d{8}$/.test(datePart)) {
+          return `微信图片 ${datePart.slice(0,4)}-${datePart.slice(4,6)}-${datePart.slice(6,8)}`;
+        }
+      }
+      if (/^\d{14,17}/.test(nameWithoutExt)) {
+        const y = nameWithoutExt.slice(0,4), m = nameWithoutExt.slice(4,6), d = nameWithoutExt.slice(6,8),
+              h = nameWithoutExt.slice(8,10), mi = nameWithoutExt.slice(10,12), s = nameWithoutExt.slice(12,14);
+        return `作品 ${y}-${m}-${d} ${h}:${mi}:${s}`;
+      }
+      return `作品 ${index + 1}`;
+    }
+
+    // ===== 预加载 =====
+    function preloadAdjacent() {
+      const toPreload = [];
+      for (let i = Math.max(0, currentIndex - 2); i <= Math.min(imageSources.length - 1, currentIndex + 2); i++) {
+        if (i === currentIndex) continue;
+        const src = imageSources[i].src;
+        if (!preloadCache.has(src)) {
+          toPreload.push(src);
+        }
+      }
+      toPreload.forEach(src => {
+        const img = new Image();
+        img.onload = () => preloadCache.set(src, true);
+        img.onerror = () => preloadCache.set(src, false);
+        img.src = src;
+      });
+    }
+
+    function loadCurrentImage() {
+      if (currentIndex < 0 || currentIndex >= imageSources.length) return;
+      const item = imageSources[currentIndex];
+
+      detailImageLoader.classList.add('loading');
+      detailImage.style.opacity = '0';
+      detailImage.src = item.src;
+      detailImage.alt = sanitizeText(item.title || item.name, 200);
+
+      detailImage.onload = () => {
+        detailImageLoader.classList.remove('loading');
+        detailImage.style.opacity = '1';
+      };
+      detailImage.onerror = () => {
+        detailImageLoader.classList.remove('loading');
+        detailImage.style.opacity = '1';
+      };
+
+      updateUI();
+    }
+
+    function updateUI() {
+      const item = imageSources[currentIndex];
+      if (!item) return;
+
+      detailCounter.textContent = `${currentIndex + 1} / ${imageSources.length}`;
+      detailTitle.textContent = sanitizeText(item.title || `作品 ${currentIndex + 1}`, 200);
+
+      const cat = categories.find(c => c.id === (item.category || 5));
+      if (cat) {
+        detailCatBadge.textContent = `${cat.icon} ${cat.name}`;
+        detailCatBadge.style.display = '';
+        detailPanelCatBadge.textContent = `${cat.icon} ${cat.name}`;
+        detailPanelCatBadge.style.display = 'inline-block';
+      } else {
+        detailCatBadge.style.display = 'none';
+        detailPanelCatBadge.style.display = 'none';
+      }
+
+      detailPanelWorkTitle.textContent = sanitizeText(item.title || `作品 ${currentIndex + 1}`, 200);
+
+      const note = getNote(item.name) || item.note || '';
+      if (note) {
+        detailPanelMemory.textContent = sanitizeText(note, 5000);
+        detailPanelMemory.style.display = '';
+        detailPanelEmpty.style.display = 'none';
+      } else {
+        detailPanelMemory.style.display = 'none';
+        detailPanelEmpty.style.display = '';
+      }
+
+      const isAdmin = (sessionStorage.getItem(AUTH_KEY) || localStorage.getItem(AUTH_KEY)) === 'true';
+      detailAdminEditBtn.classList.toggle('visible', isAdmin);
+
+      detailPrevBtn.style.visibility = currentIndex > 0 ? '' : 'hidden';
+      detailNextBtn.style.visibility = currentIndex < imageSources.length - 1 ? '' : 'hidden';
+
+      updateDocumentTitle();
+
+      const infoPane = $('#detailInfoPane');
+      if (infoPane) infoPane.scrollTop = 0;
+    }
+
+    function updateDocumentTitle() {
+      const item = imageSources[currentIndex];
+      if (item) {
+        document.title = `${sanitizeText(item.title || '作品 ' + (currentIndex + 1), 100)} - 贝贝的收藏`;
+      }
+    }
+
+    function getNote(filename) {
+      const raw = safeGetStorage(STORAGE_KEY);
+      if (raw) {
+        const data = safeParseJSON(raw, {});
+        if (data[filename] && data[filename].note) {
+          return sanitizeText(data[filename].note, 5000);
+        }
+      }
+      return '';
+    }
+
+    // ===== 导航 =====
+    function navigate(direction) {
+      const newIndex = currentIndex + direction;
+      if (newIndex < 0 || newIndex >= imageSources.length) return;
+      currentIndex = newIndex;
+      const url = new URL(window.location);
+      url.searchParams.set('index', currentIndex);
+      window.history.replaceState({}, '', url);
+      loadCurrentImage();
+      preloadAdjacent();
+    }
+
+    // ===== 事件绑定 =====
+    function bindEvents() {
+      detailBackBtn.addEventListener('click', () => {
+        if (window.opener && !window.opener.closed) {
+          window.close();
+        } else {
+          window.location.href = 'index.html';
+        }
+      });
+
+      detailPrevBtn.addEventListener('click', () => navigate(-1));
+      detailNextBtn.addEventListener('click', () => navigate(1));
+
+      detailAdminEditBtn.addEventListener('click', () => {
+        const item = imageSources[currentIndex];
+        if (item) openDetailEditModal(item);
+      });
+
+      detailHelpBtn.addEventListener('click', showKeyboardHelp);
+
+      bindDetailEditModal();
+
+      // 键盘导航
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+        switch (e.key) {
+          case 'ArrowLeft': e.preventDefault(); navigate(-1); break;
+          case 'ArrowRight': e.preventDefault(); navigate(1); break;
+          case 'Escape':
+            if (detailEditModal.classList.contains('active')) {
+              closeDetailEditModal();
+            }
+            break;
+          case '?': e.preventDefault(); showKeyboardHelp(); break;
+        }
+      });
+
+      // 触摸滑动（移动端）
+      let touchStartX = 0, touchStartY = 0, touchMoved = false;
+      detailImagePane.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchMoved = false;
+        }
+      }, { passive: true });
+
+      detailImagePane.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1) {
+          const dx = e.touches[0].clientX - touchStartX;
+          const dy = e.touches[0].clientY - touchStartY;
+          if (Math.abs(dx) > Math.abs(dy)) touchMoved = true;
+        }
+      }, { passive: true });
+
+      detailImagePane.addEventListener('touchend', (e) => {
+        if (!touchMoved) return;
+        const dx = (e.changedTouches[0]?.clientX || 0) - touchStartX;
+        if (Math.abs(dx) > 50) navigate(dx > 0 ? -1 : 1);
+      });
+    }
+
+    // ===== 键盘帮助 =====
+    function showKeyboardHelp() {
+      const existing = document.getElementById('shortcuts-help');
+      if (existing) { existing.remove(); return; }
+
+      const el = document.createElement('div');
+      el.id = 'shortcuts-help';
+      el.className = 'shortcuts-overlay';
+      el.innerHTML = `
+        <div class="shortcuts-panel">
+          <h3>⌨️ 键盘快捷键</h3>
+          <div class="shortcuts-grid">
+            <span class="key">← →</span><span>上一张 / 下一张</span>
+            <span class="key">ESC</span><span>关闭编辑弹窗</span>
+            <span class="key">?</span><span>显示/隐藏此帮助</span>
+            <span class="key">←→滑动</span><span>移动端左右滑动切换</span>
+          </div>
+          <button style="display:block;margin:16px auto 0;padding:8px 20px;border-radius:999px;border:1px solid rgba(139,122,107,0.2);background:rgba(139,122,107,0.06);color:#3d2e1f;cursor:pointer;font-size:0.85rem;font-family:inherit;" onclick="this.closest('.shortcuts-overlay').remove()">关闭</button>
+        </div>
+      `;
+      el.addEventListener('click', (e) => { if (e.target === el) el.remove(); });
+      document.body.appendChild(el);
+    }
+
+    // ===== 编辑弹窗逻辑 =====
+    function openDetailEditModal(item) {
+      const raw = safeGetStorage(STORAGE_KEY);
+      const data = safeParseJSON(raw, {});
+      const saved = data[item.name] || {};
+
+      detailEditCurrentFilename = item.name;
+      detailEditTitle.value = sanitizeText(saved.title || item.title || '', 200);
+      detailEditNote.value = sanitizeText(saved.note || item.note || '', 5000);
+
+      detailEditCategory.innerHTML = '';
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = `${cat.icon} ${cat.name}`;
+        if (cat.id === (saved.category || item.category || 5)) opt.selected = true;
+        detailEditCategory.appendChild(opt);
+      });
+
+      detailEditSuccess.style.display = 'none';
+      detailEditModal.classList.add('active');
+      detailEditModal.setAttribute('aria-hidden', 'false');
+      setTimeout(() => detailEditTitle.focus(), 100);
+    }
+
+    function closeDetailEditModal() {
+      detailEditModal.classList.remove('active');
+      detailEditModal.setAttribute('aria-hidden', 'true');
+      detailEditCurrentFilename = null;
+    }
+
+    function saveDetailEdit(e) {
+      e.preventDefault();
+      if (!detailEditCurrentFilename) return;
+
+      const title = sanitizeText(detailEditTitle.value.trim(), 200);
+      const note = sanitizeText(detailEditNote.value.trim(), 5000);
+      const category = Math.max(1, Math.min(5, parseInt(detailEditCategory.value) || 5));
+
+      const raw = safeGetStorage(STORAGE_KEY);
+      const data = safeParseJSON(raw, {});
+      data[detailEditCurrentFilename] = { ...data[detailEditCurrentFilename], title, note, category };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (ex) {
+        alert('保存失败：存储空间不足。');
+        return;
+      }
+
+      const idx = imageSources.findIndex(s => s.name === detailEditCurrentFilename);
+      if (idx >= 0) {
+        imageSources[idx].title = title || `作品 ${idx + 1}`;
+        imageSources[idx].note = note;
+        imageSources[idx].category = category;
+      }
+
+      updateUI();
+      detailEditSuccess.style.display = 'block';
+      setTimeout(() => { detailEditSuccess.style.display = 'none'; }, 1500);
+
+      // 调度 GitHub 同步
+      if (typeof GitHubSync !== 'undefined' && GitHubSync.isConfigured()) {
+        if (typeof GALLERY_MANIFEST !== 'undefined') {
+          const manifest = JSON.parse(JSON.stringify(GALLERY_MANIFEST));
+          const data = safeParseJSON(safeGetStorage('gallery_admin_data'), {});
+          if (manifest.images) {
+            manifest.images = manifest.images.map(img => {
+              const saved = data[img.name];
+              return saved ? { ...img, overrides: { title: saved.title || img.name, category: saved.category || img.category, note: saved.note || '', hidden: saved.hidden || false } } : img;
+            });
+          }
+          manifest.generated = new Date().toISOString();
+          GitHubSync.schedulePushUpdate(manifest, { immediate: true });
+        }
+      }
+    }
+
+    function bindDetailEditModal() {
+      detailEditClose.addEventListener('click', closeDetailEditModal);
+      detailEditModal.addEventListener('click', (e) => {
+        if (e.target === detailEditModal || e.target.classList.contains('detail-edit-backdrop')) {
+          closeDetailEditModal();
+        }
+      });
+      detailEditForm.addEventListener('submit', saveDetailEdit);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && detailEditModal.classList.contains('active')) {
+          closeDetailEditModal();
+        }
+      });
+    }
+
+    // ============================================================
+    //  🌸 樱花飘落动效
+    // ============================================================
+    const sakuraCanvas = $('#sakuraCanvas');
+    const sakuraCtx = sakuraCanvas.getContext('2d');
+    const sakuraPetals = [];
+    const SAKURA_COUNT = 30;
+
+    function resizeSakura() {
+      const dpr = devicePixelRatio || 1;
+      const w = window.innerWidth, h = window.innerHeight;
+      sakuraCanvas.width = w * dpr;
+      sakuraCanvas.height = h * dpr;
+      sakuraCanvas.style.width = `${w}px`;
+      sakuraCanvas.style.height = `${h}px`;
+      sakuraCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawPetal(ctx, x, y, size, rotation, alpha, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+
+      const w = size * 0.35;
+      const h = size * 0.55;
+      ctx.beginPath();
+      ctx.moveTo(0, -h);
+      ctx.bezierCurveTo(w, -h * 0.6, w, h * 0.3, 0, h);
+      ctx.bezierCurveTo(-w, h * 0.3, -w, -h * 0.6, 0, -h);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function initSakura() {
+      resizeSakura();
+      sakuraPetals.length = 0;
+
+      const colors = [
+        'rgba(255, 183, 197, VAR)',
+        'rgba(255, 160, 180, VAR)',
+        'rgba(255, 200, 210, VAR)',
+        'rgba(255, 175, 190, VAR)',
+      ];
+
+      for (let i = 0; i < SAKURA_COUNT; i++) {
+        const baseColor = colors[Math.floor(Math.random() * colors.length)];
+        sakuraPetals.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * -window.innerHeight,
+          size: 7 + Math.random() * 16,
+          speedY: 0.25 + Math.random() * 1.0,
+          speedX: -0.25 + Math.random() * 0.5,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.025,
+          sway: Math.random() * Math.PI * 2,
+          swaySpeed: 0.008 + Math.random() * 0.018,
+          swayAmount: 0.4 + Math.random() * 2.0,
+          alpha: 0.25 + Math.random() * 0.45,
+          baseColor: baseColor,
+          flicker: Math.random() * 0.1
+        });
+      }
+
+      animateSakura();
+    }
+
+    function animateSakura() {
+      sakuraCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      sakuraPetals.forEach((petal) => {
+        petal.y += petal.speedY;
+        petal.sway += petal.swaySpeed;
+        petal.x += petal.speedX + Math.sin(petal.sway) * petal.swayAmount * 0.3;
+        petal.rotation += petal.rotationSpeed;
+
+        if (petal.y > window.innerHeight + 40) {
+          petal.y = -40;
+          petal.x = Math.random() * window.innerWidth;
+        }
+        if (petal.x < -40) petal.x = window.innerWidth + 40;
+        if (petal.x > window.innerWidth + 40) petal.x = -40;
+
+        const flickerAlpha = petal.alpha + (Math.sin(Date.now() * 0.003 + petal.flicker) * 0.05);
+        const color = petal.baseColor.replace('VAR', Math.max(0, Math.min(1, flickerAlpha)).toFixed(2));
+
+        drawPetal(sakuraCtx, petal.x, petal.y, petal.size, petal.rotation, Math.max(0.12, flickerAlpha), color);
+      });
+
+      requestAnimationFrame(animateSakura);
+    }
+
+    window.addEventListener('resize', resizeSakura);
+
+    init();
+  </script>
+</body>
+</html>

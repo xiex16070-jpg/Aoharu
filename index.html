@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贝贝最喜欢的作品们</title>
+  <meta name="description" content="贝贝的温暖收藏馆 - 每一张作品都有与我的故事">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <!-- 粒子背景画布 -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <!-- 樱花飘落画布 -->
+    <canvas id="sakuraCanvas" class="sakura-canvas"></canvas>
+
+    <!-- 顶部工具栏 -->
+    <div class="topbar">
+      <div class="topbar-right">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="搜索图片..." autocomplete="off">
+        </div>
+        <select id="sortSelect" class="sort-select">
+          <option value="default">默认排序</option>
+          <option value="name-asc">名称 A → Z</option>
+          <option value="name-desc">名称 Z → A</option>
+          <option value="date-desc">日期 新 → 旧</option>
+          <option value="date-asc">日期 旧 → 新</option>
+        </select>
+        <button id="layoutToggle" class="btn btn-secondary" title="切换布局">▦ 布局</button>
+        <button id="slideshowButton" class="btn btn-secondary" title="幻灯片播放">▶▶ 幻灯片</button>
+        <button id="folderButton" class="btn btn-secondary" title="选择图片文件夹">📁 文件夹</button>
+        <button id="adminEntryBtn" class="btn btn-secondary" title="管理员登录">🔐 管理</button>
+      </div>
+    </div>
+
+    <!-- 管理浮动栏（登入后显示） -->
+    <div id="adminBar" class="admin-bar" style="display:none;">
+      <div class="admin-bar-left">
+        <span class="admin-bar-badge">🛡️ 管理模式</span>
+        <span id="adminBarUser" class="admin-bar-user"></span>
+      </div>
+      <div class="admin-bar-center" id="adminMusicControls" style="display:none;">
+        <button id="adminMusicPlayBtn" class="btn btn-sm" title="播放/暂停背景音乐">▶</button>
+        <select id="adminMusicSelect" class="admin-music-select" title="选择背景音乐"></select>
+        <input type="range" id="adminMusicVolume" class="admin-volume-slider" min="0" max="100" value="45" title="音量">
+        <span id="adminMusicTrackInfo" class="admin-music-track-info">🎵 HOYO-MiX - I'm back, Kiana</span>
+      </div>
+      <div class="admin-bar-right">
+        <span id="syncStatusBadge" class="sync-status-badge" style="display:none;" title="GitHub 同步状态"></span>
+        <button id="adminSyncNowBtn" class="btn btn-secondary" title="立即同步到 GitHub" style="display:none;">🔄 同步</button>
+        <button id="adminMusicMgmtBtn" class="btn btn-secondary" title="管理背景音乐">🎵 音乐管理</button>
+        <button id="adminAddBtn" class="btn admin-add-btn" title="添加新作品">➕ 添加作品</button>
+        <button id="adminLogoutBtn" class="btn btn-secondary" title="退出管理">🚪 退出</button>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero-panel">
+      <div class="hero-copy">
+        <p class="eyebrow">🌸 贝贝的收藏</p>
+        <h1>贝贝最喜欢的作品们</h1>
+        <p class="hero-subtitle">点击任意图片在新标签页中查看大图和回忆简介。</p>
+      </div>
+      <div class="hero-wave"></div>
+    </header>
+
+    <!-- 分类导航栏 -->
+    <nav class="category-nav" id="categoryNav">
+      <ul class="category-nav-list" id="categoryNavList"></ul>
+      <span id="imageCount" class="image-count"></span>
+    </nav>
+
+    <!-- 画廊主体 -->
+    <main>
+      <section class="gallery-section" id="gallerySection">
+        <div id="galleryContainer"></div>
+        <div id="emptyState" class="empty-state" style="display:none;">
+          <p>没有找到匹配的图片，试试其他关键词吧 ✨</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== 管理员登录弹窗 ===== -->
+  <div id="loginModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-login">
+      <button class="modal-close" id="loginModalClose" aria-label="关闭登录弹窗">✕</button>
+      <div class="modal-icon">🔐</div>
+      <h3 class="modal-title">管理员登录</h3>
+      <p class="modal-desc">请输入管理员账号和密码以进入管理模式。</p>
+      <form id="loginForm" class="modal-form" autocomplete="off">
+        <label class="form-label">
+          <span>账号</span>
+          <input type="text" id="loginUsername" class="form-input" placeholder="请输入账号" autocomplete="off" maxlength="64">
+        </label>
+        <label class="form-label">
+          <span>密码</span>
+          <input type="password" id="loginPassword" class="form-input" placeholder="请输入密码" autocomplete="off" maxlength="128">
+        </label>
+        <p id="loginError" class="form-error" style="display:none;"></p>
+        <button type="submit" class="btn form-submit">登 录</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== 编辑作品弹窗 ===== -->
+  <div id="editModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-edit">
+      <button class="modal-close" id="editModalClose" aria-label="关闭编辑弹窗">✕</button>
+      <div class="modal-icon">✏️</div>
+      <h3 class="modal-title">编辑作品信息</h3>
+      <form id="editForm" class="modal-form">
+        <input type="hidden" id="editFilename">
+        <label class="form-label">
+          <span>作品名称</span>
+          <input type="text" id="editTitle" class="form-input" placeholder="输入作品名称" maxlength="200">
+        </label>
+        <label class="form-label">
+          <span>回忆简介</span>
+          <textarea id="editNote" class="form-textarea" rows="5" placeholder="写下你与这个作品的回忆..." maxlength="5000"></textarea>
+        </label>
+        <label class="form-label">
+          <span>所属分类</span>
+          <select id="editCategory" class="form-select"></select>
+        </label>
+        <p id="editSuccess" class="form-success" style="display:none;">✅ 已保存</p>
+        <div class="form-actions">
+          <button type="button" id="editDeleteBtn" class="btn form-delete-btn">🗑 删除此作品</button>
+          <button type="submit" class="btn form-submit">💾 保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== 添加作品弹窗 ===== -->
+  <div id="addModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-add">
+      <button class="modal-close" id="addModalClose" aria-label="关闭添加弹窗">✕</button>
+      <div class="modal-icon">➕</div>
+      <h3 class="modal-title">添加新作品</h3>
+      <form id="addForm" class="modal-form">
+        <label class="form-label">
+          <span>选择图片文件</span>
+          <input type="file" id="addImageFile" class="form-file" accept="image/*">
+        </label>
+        <label class="form-label">
+          <span>或输入已存在的文件名</span>
+          <input type="text" id="addFilename" class="form-input" placeholder="例如：20260605_151943.jpg" maxlength="512">
+        </label>
+        <label class="form-label">
+          <span>作品名称</span>
+          <input type="text" id="addTitle" class="form-input" placeholder="输入作品名称" maxlength="200">
+        </label>
+        <label class="form-label">
+          <span>回忆简介</span>
+          <textarea id="addNote" class="form-textarea" rows="4" placeholder="写下你与这个作品的回忆..." maxlength="5000"></textarea>
+        </label>
+        <label class="form-label">
+          <span>所属分类</span>
+          <select id="addCategory" class="form-select"></select>
+        </label>
+        <p id="addError" class="form-error" style="display:none;"></p>
+        <p id="addSuccess" class="form-success" style="display:none;"></p>
+        <button type="submit" class="btn form-submit">✅ 添加作品</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== 删除确认弹窗 ===== -->
+  <div id="deleteConfirmModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-confirm">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title">确认删除</h3>
+      <p id="deleteConfirmText" class="modal-desc"></p>
+      <div class="form-actions">
+        <button id="deleteCancelBtn" class="btn btn-secondary">取消</button>
+        <button id="deleteConfirmBtn" class="btn form-delete-btn">确认删除</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 音乐管理弹窗 ===== -->
+  <div id="musicMgmtModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-panel modal-music">
+      <button class="modal-close" id="musicMgmtClose" aria-label="关闭音乐管理">✕</button>
+      <div class="modal-icon">🎵</div>
+      <h3 class="modal-title">背景音乐管理</h3>
+      <p class="modal-desc">添加或移除背景音乐曲目，支持 mp3 / flac / wav / ogg 格式。</p>
+
+      <!-- 添加区域 -->
+      <div class="music-mgmt-add-row">
+        <input type="file" id="musicFileInput" class="form-file music-file-input" accept="audio/mp3,audio/mpeg,audio/flac,audio/wav,audio/ogg,audio/x-wav,.mp3,.flac,.wav,.ogg">
+        <span class="music-mgmt-or">或</span>
+        <input type="text" id="musicFilenameInput" class="form-input music-filename-input" placeholder="输入根目录下的音乐文件名…" maxlength="256">
+        <button id="musicAddBtn" class="btn music-add-btn">➕ 添加</button>
+      </div>
+      <p id="musicAddError" class="form-error" style="display:none;"></p>
+
+      <!-- 曲目列表 -->
+      <div class="music-track-list-header">
+        <span>📋 当前曲目列表</span>
+        <span id="musicTrackCount" class="music-track-count"></span>
+      </div>
+      <div id="musicTrackList" class="music-track-list"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox 全屏弹窗 -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-close" title="关闭" aria-label="关闭灯箱">✕</button>
+      <button id="lightboxPrev" class="lightbox-nav lightbox-prev" title="上一张" aria-label="上一张">‹</button>
+      <button id="lightboxNext" class="lightbox-nav lightbox-next" title="下一张" aria-label="下一张">›</button>
+
+      <div class="lightbox-image-area" id="lightboxImageArea">
+        <img id="lightboxImage" src="" alt="" draggable="false" loading="lazy">
+        <div class="lightbox-loader" id="lightboxLoader"></div>
+      </div>
+
+      <div class="lightbox-info-bar">
+        <div class="lightbox-info-left">
+          <span id="lightboxCounter" class="lightbox-counter"></span>
+          <span id="lightboxTitle" class="lightbox-title"></span>
+          <span id="lightboxCategoryBadge" class="lightbox-category-badge"></span>
+        </div>
+        <div class="lightbox-info-right">
+          <button id="lightboxEditBtn" class="lightbox-action-btn lightbox-admin-only" title="编辑此作品" style="display:none;">✏️ 编辑</button>
+          <button id="lightboxZoomIn" class="lightbox-action-btn" title="放大">🔍⁺</button>
+          <button id="lightboxZoomOut" class="lightbox-action-btn" title="缩小">🔍⁻</button>
+          <button id="lightboxZoomReset" class="lightbox-action-btn" title="重置">↺</button>
+        </div>
+      </div>
+
+      <div class="lightbox-memory-panel" id="lightboxMemoryPanel">
+        <div class="lightbox-memory-header">
+          <h3 id="lightboxMemoryTitle">📝 贝贝的回忆</h3>
+        </div>
+        <p id="lightboxNote" class="lightbox-note-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 幻灯片进度条 -->
+  <div id="slideshowBar" class="slideshow-bar" style="display:none;">
+    <div id="slideshowProgress" class="slideshow-progress"></div>
+  </div>
+
+  <input type="file" id="folderInput" webkitdirectory directory multiple accept="image/*" hidden>
+  <audio id="audioPlayer" preload="metadata"></audio>
+  <script src="manifest.js"></script>
+  <script src="github-api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
