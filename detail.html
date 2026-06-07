@@ -1153,7 +1153,7 @@
             });
           }
           manifest.generated = new Date().toISOString();
-          GitHubSync.schedulePushUpdate(manifest, { immediate: true });
+         GitHubSync.schedulePushUpdate(manifest, { force: true });
         }
       }
     }

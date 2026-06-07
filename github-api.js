@@ -421,9 +421,8 @@ const GitHubSync = (() => {
         try {
           const fetched = await fetchManifest();
           // 提取远端 manifest 对象
-          const remoteJson = fetched.content
-            .replace(/^const GALLERY_MANIFEST = /, '')
-            .replace(/;\s*$/, '');
+         const remoteJson = fetched.content.match(/const GALLERY_MANIFEST\s*=\s*(\{[\s\S]*?\});/)?.[1];
+if (!remoteJson) throw new Error('无法解析远端 manifest 格式');
           const remoteManifest = JSON.parse(remoteJson);
           // 合并本地 overrides 到远端
           const merged = mergeLocalOverrides(remoteManifest);
@@ -486,10 +485,9 @@ const GitHubSync = (() => {
       saveSyncStatus({ lastPullSync: Date.now() });
 
       // 解析远端 manifest
-      const jsonStr = fetched.content
-        .replace(/^const GALLERY_MANIFEST = /, '')
-        .replace(/;\s*$/, '');
-      const remoteManifest = JSON.parse(jsonStr);
+      const jsonStr = fetched.content.match(/const GALLERY_MANIFEST\s*=\s*(\{[\s\S]*?\});/)?.[1];
+if (!jsonStr) throw new Error('无法解析远端 manifest 格式');
+const remoteManifest = JSON.parse(jsonStr);
 
       // 比较时间戳
       const localGen = (typeof GALLERY_MANIFEST !== 'undefined' && GALLERY_MANIFEST.generated)
