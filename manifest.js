@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T10:01:38.516Z
+// 生成时间: 2026-06-07T10:09:27.695Z
 // 图片总数: 86
-// 校验码: 30806b07
+// 校验码: -1ad9eff6
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T10:01:07.807Z",
+  "generated": "2026-06-07T10:08:53.735Z",
   "totalImages": 84,
   "categories": [
     {
@@ -265,7 +265,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/结束乐队.jpg",
       "category": 2,
       "size": 324488,
-      "mtime": 1780739562106.742
+      "mtime": 1780739562106.742,
+      "overrides": {
+        "title": "繁星",
+        "category": 2,
+        "note": "扫弦却闪闪发光",
+        "hidden": false
+      }
     },
     {
       "name": "空月之歌.jpg",
