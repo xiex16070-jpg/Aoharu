@@ -233,20 +233,30 @@ function applyWorksDataToSources() {
   const worksData = getWorksData();
   imageSources = imageSources.map((item, i) => {
     const saved = worksData[item.name];
-    if (saved) {
-      return {
-        ...item,
-        title: sanitizeText(saved.title) || getDefaultTitle(item.name, i),
-        note: sanitizeText(saved.note, 5000) || '',
-        category: (typeof saved.category === 'number' && saved.category >= 1 && saved.category <= 5) ? saved.category : 5
-      };
-    }
-    return {
-      ...item,
-      title: getDefaultTitle(item.name, i),
-      note: '',
-      category: (typeof item.category === 'number' && item.category >= 1 && item.category <= 5) ? item.category : 5
-    };
+    const ov = item.overrides; // 读取 manifest 中推送的 overrides
+
+    // 优先级：localStorage > manifest.overrides > 原始值
+    const title = (saved && saved.title)
+      ? sanitizeText(saved.title, 200)
+      : (ov && ov.title)
+        ? sanitizeText(ov.title, 200)
+        : getDefaultTitle(item.name, i);
+
+    const note = (saved && typeof saved.note === 'string')
+      ? sanitizeText(saved.note, 5000)
+      : (ov && typeof ov.note === 'string')
+        ? sanitizeText(ov.note, 5000)
+        : '';
+
+    const category = (saved && typeof saved.category === 'number' && saved.category >= 1 && saved.category <= 5)
+      ? saved.category
+      : (ov && typeof ov.category === 'number' && ov.category >= 1 && ov.category <= 5)
+        ? ov.category
+        : (typeof item.category === 'number' && item.category >= 1 && item.category <= 5)
+          ? item.category
+          : 5;
+
+    return { ...item, title, note, category };
   });
 }
 
@@ -1134,7 +1144,7 @@ function scheduleGitHubSync() {
     updateSyncStatusUI();
     return;
   }
-  GitHubSync.schedulePushUpdate(manifest, { immediate: true });
+  GitHubSync.schedulePushUpdate(manifest, { force: true });
   updateSyncStatusUI();
   // 延迟再检查一次状态（等待实际推送完成）
   setTimeout(updateSyncStatusUI, 35000);
@@ -1152,11 +1162,12 @@ function buildImageSources() {
   if (imageSources.length === 0) {
     imageSources = buildDefaultImagesFromManifest();
     applyWorksDataToSources();
-    // 过滤隐藏项
+    // 过滤隐藏项（同时检查 localStorage 和 manifest overrides）
     const worksData = loadWorksData();
     imageSources = imageSources.filter(s => {
       const saved = worksData[s.name];
-      return !(saved && saved.hidden);
+      const ov = s.overrides;
+      return !(saved && saved.hidden) && !(ov && ov.hidden);
     });
   }
 }
