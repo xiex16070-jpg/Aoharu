@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T04:31:01.325Z
+// 生成时间: 2026-06-07T04:32:04.764Z
 // 图片总数: 86
-// 校验码: -45a43db9
+// 校验码: -aea4aeee
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T04:30:29.381Z",
-  "totalImages": 85,
+  "generated": "2026-06-07T04:31:33.497Z",
+  "totalImages": 84,
   "categories": [
     {
       "id": 1,
@@ -246,7 +246,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/绘世之卷.jpg",
       "category": 1,
       "size": 27157694,
-      "mtime": 1780739538472.186
+      "mtime": 1780739538472.186,
+      "overrides": {
+        "title": "绘世之卷.jpg",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "结束乐队.jpg",
@@ -532,7 +538,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/薪炎永燃.jpg",
       "category": 1,
       "size": 9333940,
-      "mtime": 1780739531398.1182
+      "mtime": 1780739531398.1182,
+      "overrides": {
+        "title": "薪炎永燃",
+        "category": 1,
+        "note": "愿薪火相传，美德不灭",
+        "hidden": false
+      }
     },
     {
       "name": "学院偶像大师.jpg",
