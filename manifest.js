@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T10:11:09.380Z
+// 生成时间: 2026-06-07T10:28:26.367Z
 // 图片总数: 86
-// 校验码: -186c6a1f
+// 校验码: -1fd5cc58
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T10:10:38.212Z",
-  "totalImages": 84,
+  "generated": "2026-06-07T10:27:15.065Z",
+  "totalImages": 83,
   "categories": [
     {
       "id": 1,
@@ -285,7 +285,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/苦夏.jpg",
       "category": 3,
       "size": 720324,
-      "mtime": 1780739528454.0713
+      "mtime": 1780739528454.0713,
+      "overrides": {
+        "title": "苦夏",
+        "category": 3,
+        "note": "苍蓝所栖",
+        "hidden": false
+      }
     },
     {
       "name": "拉米尔.jpg",
@@ -333,7 +339,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/明日酱的水手服.png",
       "category": 2,
       "size": 1390587,
-      "mtime": 1780739528245.4265
+      "mtime": 1780739528245.4265,
+      "overrides": {
+        "title": "明日酱的水手服",
+        "category": 2,
+        "note": "谁心中纯洁与天真的代表",
+        "hidden": false
+      }
     },
     {
       "name": "魔法少女的魔法裁判.jpg",
@@ -539,7 +551,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/物语.jpg",
       "category": 1,
       "size": 279611,
-      "mtime": 1780739549438.884
+      "mtime": 1780739549438.884,
+      "overrides": {
+        "title": "物语.jpg",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "物语.png",
