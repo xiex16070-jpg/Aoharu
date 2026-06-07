@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T16:49:54.302Z
+// 生成时间: 2026-06-07T16:50:55.311Z
 // 图片总数: 86
-// 校验码: -273bf101
+// 校验码: -d13aa952
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T16:48:52.024Z",
-  "totalImages": 83,
+  "generated": "2026-06-07T16:50:54.833Z",
+  "totalImages": 82,
   "categories": [
     {
       "id": 1,
@@ -114,10 +114,10 @@ const GALLERY_MANIFEST = {
       "size": 45515955,
       "mtime": 1780739551826.3828,
       "overrides": {
-        "title": "赤座灯里",
+        "title": "赤座灯里.jpg",
         "category": 2,
-        "note": "最痛苦的高三，感谢你一直在我身边，我永远爱你，dear akari zakaza",
-        "hidden": false
+        "note": "",
+        "hidden": true
       }
     },
     {
