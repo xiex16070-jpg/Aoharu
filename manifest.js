@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T09:55:22.206Z
+// 生成时间: 2026-06-07T10:01:38.516Z
 // 图片总数: 86
-// 校验码: -3d49610
+// 校验码: 30806b07
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T09:54:51.284Z",
+  "generated": "2026-06-07T10:01:07.807Z",
   "totalImages": 84,
   "categories": [
     {
@@ -106,7 +106,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/赤座灯里.jpg",
       "category": 2,
       "size": 45515955,
-      "mtime": 1780739551826.3828
+      "mtime": 1780739551826.3828,
+      "overrides": {
+        "title": "赤座灯里",
+        "category": 2,
+        "note": "最痛苦的高三，感谢你一直在我身边，我永远爱你，dear akari zakaza",
+        "hidden": false
+      }
     },
     {
       "name": "出航.jpg",
