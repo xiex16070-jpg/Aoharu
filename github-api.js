@@ -9,7 +9,7 @@ const GitHubSync = (() => {
    // ---- 配置 ----
   const CONFIG = {
     owner: 'xiex16070-jpg',
-    repo: 'memory',
+    repo: 'Aoharu',
     branch: 'main',
     manifestPath: 'manifest.js',
 
