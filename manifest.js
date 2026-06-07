@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T04:33:18.332Z
+// 生成时间: 2026-06-07T04:35:20.208Z
 // 图片总数: 86
-// 校验码: 382da6bd
+// 校验码: 51d180da
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T04:33:16.870Z",
+  "generated": "2026-06-07T04:35:18.223Z",
   "totalImages": 84,
   "categories": [
     {
@@ -579,7 +579,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/羽渡尘.jpg",
       "category": 1,
       "size": 233078,
-      "mtime": 1780649269605.5356
+      "mtime": 1780649269605.5356,
+      "overrides": {
+        "title": "羽渡尘",
+        "category": 1,
+        "note": "千年之羽，归于此处",
+        "hidden": false
+      }
     },
     {
       "name": "战场原荡漾.jpg",
