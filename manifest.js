@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-06T11:17:01.856Z
+// 生成时间: 2026-06-07T04:31:01.325Z
 // 图片总数: 86
-// 校验码: 7089859c666bc479
+// 校验码: -45a43db9
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-06T11:17:01.856Z",
-  "totalImages": 86,
+  "generated": "2026-06-07T04:30:29.381Z",
+  "totalImages": 85,
   "categories": [
     {
       "id": 1,
@@ -295,7 +295,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/旅途.png",
       "category": 1,
       "size": 8486409,
-      "mtime": 1780739538612.6123
+      "mtime": 1780739538612.6123,
+      "overrides": {
+        "title": "旅途.png",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "绿色.jpg",
