@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T09:46:53.928Z
+// 生成时间: 2026-06-07T09:49:51.791Z
 // 图片总数: 86
-// 校验码: 35c8dc32
+// 校验码: -76afceb0
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T09:46:23.035Z",
+  "generated": "2026-06-07T09:49:20.977Z",
   "totalImages": 84,
   "categories": [
     {
@@ -631,7 +631,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/最好的伙伴！.jpg",
       "category": 1,
       "size": 297800,
-      "mtime": 1780649248470.1802
+      "mtime": 1780649248470.1802,
+      "overrides": {
+        "title": "最好的伙伴",
+        "category": 1,
+        "note": "派蒙！最好的伙伴！",
+        "hidden": false
+      }
     },
     {
       "name": "ALICE&KEY.jpg",
