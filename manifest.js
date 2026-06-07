@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T04:35:20.208Z
+// 生成时间: 2026-06-07T09:37:42.146Z
 // 图片总数: 86
-// 校验码: 51d180da
+// 校验码: -3b16fec5
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T04:35:18.223Z",
+  "generated": "2026-06-07T09:37:11.029Z",
   "totalImages": 84,
   "categories": [
     {
@@ -335,7 +335,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/魔法少女小圆.jpg",
       "category": 1,
       "size": 481579,
-      "mtime": 1780739550528.395
+      "mtime": 1780739550528.395,
+      "overrides": {
+        "title": "魔逆转时间的公式",
+        "category": 1,
+        "note": "为你，千千万万遍",
+        "hidden": false
+      }
     },
     {
       "name": "叛逆期.jpg",
