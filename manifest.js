@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T09:41:07.511Z
+// 生成时间: 2026-06-07T09:46:53.928Z
 // 图片总数: 86
-// 校验码: -b50d1798
+// 校验码: 35c8dc32
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T09:40:36.106Z",
+  "generated": "2026-06-07T09:46:23.035Z",
   "totalImages": 84,
   "categories": [
     {
@@ -529,7 +529,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/夕立方程式.jpg",
       "category": 1,
       "size": 1662008,
-      "mtime": 1780739542597.941
+      "mtime": 1780739542597.941,
+      "overrides": {
+        "title": "夕立方程式",
+        "category": 2,
+        "note": "老仓育，你到底在终物语结尾的信中写了什么呢？",
+        "hidden": false
+      }
     },
     {
       "name": "向日葵和小太阳.webp",
