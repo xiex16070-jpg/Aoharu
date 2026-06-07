@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T15:55:47.065Z
+// 生成时间: 2026-06-07T15:57:01.319Z
 // 图片总数: 86
-// 校验码: -70c0d64a
+// 校验码: -75240314
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T15:55:45.114Z",
+  "generated": "2026-06-07T15:57:00.842Z",
   "totalImages": 83,
   "categories": [
     {
@@ -659,9 +659,9 @@ const GALLERY_MANIFEST = {
       "size": 233078,
       "mtime": 1780649269605.5356,
       "overrides": {
-        "title": "羽渡尘",
+        "title": "渡尘",
         "category": 1,
-        "note": "千年之羽，归于此处",
+        "note": "千年之羽 归于此处",
         "hidden": false
       }
     },
