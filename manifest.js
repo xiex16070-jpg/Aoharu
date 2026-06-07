@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T09:37:42.146Z
+// 生成时间: 2026-06-07T09:41:07.511Z
 // 图片总数: 86
-// 校验码: -3b16fec5
+// 校验码: -b50d1798
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T09:37:11.029Z",
+  "generated": "2026-06-07T09:40:36.106Z",
   "totalImages": 84,
   "categories": [
     {
@@ -355,7 +355,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/千手百眼，天下人间.jpg",
       "category": 1,
       "size": 2080614,
-      "mtime": 1780649261779.1714
+      "mtime": 1780649261779.1714,
+      "overrides": {
+        "title": "千手百眼，天下人间",
+        "category": 1,
+        "note": "唯有永恒，才最接近天理",
+        "hidden": false
+      }
     },
     {
       "name": "秦谷美玲.jpg",
