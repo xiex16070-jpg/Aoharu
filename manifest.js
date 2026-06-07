@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T13:19:22.528Z
+// 生成时间: 2026-06-07T13:20:25.018Z
 // 图片总数: 86
-// 校验码: 78eb8e0d
+// 校验码: 2d74e50f
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T13:19:21.618Z",
+  "generated": "2026-06-07T13:19:41.203Z",
   "totalImages": 83,
   "categories": [
     {
@@ -699,7 +699,7 @@ const GALLERY_MANIFEST = {
       "size": 297800,
       "mtime": 1780649248470.1802,
       "overrides": {
-        "title": "最好的伙伴",
+        "title": "最好的伙伴！",
         "category": 1,
         "note": "派蒙！最好的伙伴！",
         "hidden": false
