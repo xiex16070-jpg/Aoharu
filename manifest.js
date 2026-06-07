@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T16:50:55.311Z
-// 图片总数: 86
-// 校验码: -d13aa952
+// 生成时间: 2026-06-07T16:54:52.903Z
+// 图片总数: 82
+// 校验码: e5e58b3aced1ef7c
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T16:50:54.833Z",
+  "generated": "2026-06-07T16:54:52.903Z",
   "totalImages": 82,
   "categories": [
     {
@@ -111,8 +111,8 @@ const GALLERY_MANIFEST = {
       "name": "赤座灯里.jpg",
       "src": "青春和热爱/赤座灯里.jpg",
       "category": 2,
-      "size": 45515955,
-      "mtime": 1780739551826.3828,
+      "size": 1102709,
+      "mtime": 1778293550550.71,
       "overrides": {
         "title": "赤座灯里.jpg",
         "category": 2,
@@ -254,19 +254,6 @@ const GALLERY_MANIFEST = {
       "mtime": 1780739548951.268
     },
     {
-      "name": "绘世之卷.jpg",
-      "src": "入坑和启蒙/绘世之卷.jpg",
-      "category": 1,
-      "size": 27157694,
-      "mtime": 1780739538472.186,
-      "overrides": {
-        "title": "绘世之卷.jpg",
-        "category": 1,
-        "note": "",
-        "hidden": true
-      }
-    },
-    {
       "name": "结束乐队.jpg",
       "src": "青春和热爱/结束乐队.jpg",
       "category": 2,
@@ -319,19 +306,6 @@ const GALLERY_MANIFEST = {
       "category": 5,
       "size": 823460,
       "mtime": 1780649251626.5032
-    },
-    {
-      "name": "旅途.png",
-      "src": "入坑和启蒙/旅途.png",
-      "category": 1,
-      "size": 8486409,
-      "mtime": 1780739538612.6123,
-      "overrides": {
-        "title": "旅途.png",
-        "category": 1,
-        "note": "",
-        "hidden": true
-      }
     },
     {
       "name": "绿色.jpg",
