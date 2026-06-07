@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T09:49:51.791Z
+// 生成时间: 2026-06-07T09:52:18.830Z
 // 图片总数: 86
-// 校验码: -76afceb0
+// 校验码: d7a01e0e
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T09:49:20.977Z",
+  "generated": "2026-06-07T09:51:47.435Z",
   "totalImages": 84,
   "categories": [
     {
@@ -452,7 +452,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/水的女儿.jpg",
       "category": 1,
       "size": 1798128,
-      "mtime": 1780649269356.5344
+      "mtime": 1780649269356.5344,
+      "overrides": {
+        "title": "水的女儿",
+        "category": 3,
+        "note": "仿若无因飘落的细雨",
+        "hidden": false
+      }
     },
     {
       "name": "素晴日.jpg",
