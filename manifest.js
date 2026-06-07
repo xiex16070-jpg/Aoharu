@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T10:09:27.695Z
+// 生成时间: 2026-06-07T10:11:09.380Z
 // 图片总数: 86
-// 校验码: -1ad9eff6
+// 校验码: -186c6a1f
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T10:08:53.735Z",
+  "generated": "2026-06-07T10:10:38.212Z",
   "totalImages": 84,
   "categories": [
     {
@@ -429,7 +429,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/甚至能喜欢上恋爱中的自己.png",
       "category": 2,
       "size": 1184050,
-      "mtime": 1780739560842.0513
+      "mtime": 1780739560842.0513,
+      "overrides": {
+        "title": "甚至能喜欢上恋爱中的自己",
+        "category": 2,
+        "note": "“我喜欢你，甚至能喜欢上恋爱中的自己”",
+        "hidden": false
+      }
     },
     {
       "name": "生日快乐.jpg",
