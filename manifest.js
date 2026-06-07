@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-06T11:17:01.856Z
+// 生成时间: 2026-06-07T13:21:29.115Z
 // 图片总数: 86
-// 校验码: 7089859c666bc479
+// 校验码: 276c94f9
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-06T11:17:01.856Z",
-  "totalImages": 86,
+  "generated": "2026-06-07T13:21:28.293Z",
+  "totalImages": 83,
   "categories": [
     {
       "id": 1,
@@ -92,7 +92,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/超时空辉夜姬！.jpg",
       "category": 2,
       "size": 506723,
-      "mtime": 1780739524367.2683
+      "mtime": 1780739524367.2683,
+      "overrides": {
+        "title": "超时空辉夜姬！",
+        "category": 2,
+        "note": "最棒的新年礼物！",
+        "hidden": false
+      }
     },
     {
       "name": "赤月传承.jpg",
@@ -106,7 +112,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/赤座灯里.jpg",
       "category": 2,
       "size": 45515955,
-      "mtime": 1780739551826.3828
+      "mtime": 1780739551826.3828,
+      "overrides": {
+        "title": "赤座灯里",
+        "category": 2,
+        "note": "最痛苦的高三，感谢你一直在我身边，我永远爱你，dear akari zakaza",
+        "hidden": false
+      }
     },
     {
       "name": "出航.jpg",
@@ -246,14 +258,26 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/绘世之卷.jpg",
       "category": 1,
       "size": 27157694,
-      "mtime": 1780739538472.186
+      "mtime": 1780739538472.186,
+      "overrides": {
+        "title": "绘世之卷.jpg",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "结束乐队.jpg",
       "src": "青春和热爱/结束乐队.jpg",
       "category": 2,
       "size": 324488,
-      "mtime": 1780739562106.742
+      "mtime": 1780739562106.742,
+      "overrides": {
+        "title": "繁星",
+        "category": 2,
+        "note": "扫弦却闪闪发光",
+        "hidden": false
+      }
     },
     {
       "name": "空月之歌.jpg",
@@ -267,7 +291,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/苦夏.jpg",
       "category": 3,
       "size": 720324,
-      "mtime": 1780739528454.0713
+      "mtime": 1780739528454.0713,
+      "overrides": {
+        "title": "苦夏",
+        "category": 3,
+        "note": "苍蓝所栖",
+        "hidden": false
+      }
     },
     {
       "name": "拉米尔.jpg",
@@ -295,7 +325,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/旅途.png",
       "category": 1,
       "size": 8486409,
-      "mtime": 1780739538612.6123
+      "mtime": 1780739538612.6123,
+      "overrides": {
+        "title": "旅途.png",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "绿色.jpg",
@@ -309,7 +345,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/明日酱的水手服.png",
       "category": 2,
       "size": 1390587,
-      "mtime": 1780739528245.4265
+      "mtime": 1780739528245.4265,
+      "overrides": {
+        "title": "明日酱的水手服",
+        "category": 2,
+        "note": "谁心中纯洁与天真的代表",
+        "hidden": false
+      }
     },
     {
       "name": "魔法少女的魔法裁判.jpg",
@@ -323,7 +365,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/魔法少女小圆.jpg",
       "category": 1,
       "size": 481579,
-      "mtime": 1780739550528.395
+      "mtime": 1780739550528.395,
+      "overrides": {
+        "title": "魔逆转时间的公式",
+        "category": 1,
+        "note": "为你，千千万万遍",
+        "hidden": false
+      }
     },
     {
       "name": "叛逆期.jpg",
@@ -337,7 +385,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/千手百眼，天下人间.jpg",
       "category": 1,
       "size": 2080614,
-      "mtime": 1780649261779.1714
+      "mtime": 1780649261779.1714,
+      "overrides": {
+        "title": "千手百眼，天下人间",
+        "category": 1,
+        "note": "唯有永恒，才最接近天理",
+        "hidden": false
+      }
     },
     {
       "name": "秦谷美玲.jpg",
@@ -393,14 +447,26 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/甚至能喜欢上恋爱中的自己.png",
       "category": 2,
       "size": 1184050,
-      "mtime": 1780739560842.0513
+      "mtime": 1780739560842.0513,
+      "overrides": {
+        "title": "甚至能喜欢上恋爱中的自己",
+        "category": 2,
+        "note": "“我喜欢你，甚至能喜欢上恋爱中的自己”",
+        "hidden": false
+      }
     },
     {
       "name": "生日快乐.jpg",
       "src": "青春和热爱/生日快乐.jpg",
       "category": 2,
       "size": 192186,
-      "mtime": 1780739551872.3904
+      "mtime": 1780739551872.3904,
+      "overrides": {
+        "title": "Happy birthday",
+        "category": 2,
+        "note": "“再见了，爱丽丝，希望你以后的旅途依然充满友情，勇气，与光的浪漫”",
+        "hidden": false
+      }
     },
     {
       "name": "生生不息.jpg",
@@ -428,7 +494,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/水的女儿.jpg",
       "category": 1,
       "size": 1798128,
-      "mtime": 1780649269356.5344
+      "mtime": 1780649269356.5344,
+      "overrides": {
+        "title": "水的女儿",
+        "category": 3,
+        "note": "仿若无因飘落的细雨",
+        "hidden": false
+      }
     },
     {
       "name": "素晴日.jpg",
@@ -449,7 +521,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/天童爱丽丝.jpg",
       "category": 2,
       "size": 251753,
-      "mtime": 1780739556075.977
+      "mtime": 1780739556075.977,
+      "overrides": {
+        "title": "致爱丽丝",
+        "category": 2,
+        "note": "勇者大冒险！",
+        "hidden": false
+      }
     },
     {
       "name": "为你，千千万万遍.jpg",
@@ -491,7 +569,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/物语.jpg",
       "category": 1,
       "size": 279611,
-      "mtime": 1780739549438.884
+      "mtime": 1780739549438.884,
+      "overrides": {
+        "title": "物语.jpg",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "物语.png",
@@ -505,7 +589,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/夕立方程式.jpg",
       "category": 1,
       "size": 1662008,
-      "mtime": 1780739542597.941
+      "mtime": 1780739542597.941,
+      "overrides": {
+        "title": "夕立方程式",
+        "category": 2,
+        "note": "老仓育，你到底在终物语结尾的信中写了什么呢？",
+        "hidden": false
+      }
     },
     {
       "name": "向日葵和小太阳.webp",
@@ -526,7 +616,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/薪炎永燃.jpg",
       "category": 1,
       "size": 9333940,
-      "mtime": 1780739531398.1182
+      "mtime": 1780739531398.1182,
+      "overrides": {
+        "title": "薪炎永燃",
+        "category": 1,
+        "note": "愿薪火相传，美德不灭",
+        "hidden": false
+      }
     },
     {
       "name": "学院偶像大师.jpg",
@@ -561,7 +657,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/羽渡尘.jpg",
       "category": 1,
       "size": 233078,
-      "mtime": 1780649269605.5356
+      "mtime": 1780649269605.5356,
+      "overrides": {
+        "title": "羽渡尘",
+        "category": 1,
+        "note": "千年之羽，归于此处",
+        "hidden": false
+      }
     },
     {
       "name": "战场原荡漾.jpg",
@@ -582,14 +684,26 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/终末少女旅行.jpg",
       "category": 2,
       "size": 461539,
-      "mtime": 1780739554762.6433
+      "mtime": 1780739554762.6433,
+      "overrides": {
+        "title": "少女终末旅行",
+        "category": 3,
+        "note": "“愿世间再无战争，愿人类荣光永存”",
+        "hidden": false
+      }
     },
     {
       "name": "最好的伙伴！.jpg",
       "src": "入坑和启蒙/最好的伙伴！.jpg",
       "category": 1,
       "size": 297800,
-      "mtime": 1780649248470.1802
+      "mtime": 1780649248470.1802,
+      "overrides": {
+        "title": "最好的伙伴！",
+        "category": 1,
+        "note": "派蒙！最好的伙伴！",
+        "hidden": false
+      }
     },
     {
       "name": "ALICE&KEY.jpg",
@@ -610,7 +724,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/K-ON!.jpg",
       "category": 1,
       "size": 366238,
-      "mtime": 1780739529344.7188
+      "mtime": 1780739529344.7188,
+      "overrides": {
+        "title": "K-ON!",
+        "category": 2,
+        "note": "轻音永不毕业！",
+        "hidden": false
+      }
     },
     {
       "name": "kotone.jpg",
