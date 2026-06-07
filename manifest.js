@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T10:28:26.367Z
+// 生成时间: 2026-06-07T10:48:48.693Z
 // 图片总数: 86
-// 校验码: -1fd5cc58
+// 校验码: -7d2a5da8
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T10:27:15.065Z",
+  "generated": "2026-06-07T10:48:48.013Z",
   "totalImages": 83,
   "categories": [
     {
@@ -92,7 +92,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/超时空辉夜姬！.jpg",
       "category": 2,
       "size": 506723,
-      "mtime": 1780739524367.2683
+      "mtime": 1780739524367.2683,
+      "overrides": {
+        "title": "超时空辉夜姬！",
+        "category": 2,
+        "note": "最棒的新年礼物！",
+        "hidden": false
+      }
     },
     {
       "name": "赤月传承.jpg",
@@ -454,7 +460,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/生日快乐.jpg",
       "category": 2,
       "size": 192186,
-      "mtime": 1780739551872.3904
+      "mtime": 1780739551872.3904,
+      "overrides": {
+        "title": "Happy birthday",
+        "category": 2,
+        "note": "“再见了，爱丽丝，希望你以后的旅途依然充满友情，勇气，与光的浪漫”",
+        "hidden": false
+      }
     },
     {
       "name": "生生不息.jpg",
@@ -509,7 +521,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/天童爱丽丝.jpg",
       "category": 2,
       "size": 251753,
-      "mtime": 1780739556075.977
+      "mtime": 1780739556075.977,
+      "overrides": {
+        "title": "致爱丽丝",
+        "category": 2,
+        "note": "勇者大冒险！",
+        "hidden": false
+      }
     },
     {
       "name": "为你，千千万万遍.jpg",
@@ -666,7 +684,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/终末少女旅行.jpg",
       "category": 2,
       "size": 461539,
-      "mtime": 1780739554762.6433
+      "mtime": 1780739554762.6433,
+      "overrides": {
+        "title": "少女终末旅行",
+        "category": 3,
+        "note": "“愿世间再无战争，愿人类荣光永存”",
+        "hidden": false
+      }
     },
     {
       "name": "最好的伙伴！.jpg",
