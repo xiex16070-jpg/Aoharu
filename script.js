@@ -63,7 +63,8 @@ function buildDefaultImagesFromManifest() {
       title: img.name,
       note: '',
       size: img.size,
-      mtime: img.mtime
+      mtime: img.mtime,
+      overrides: img.overrides || null
     }));
   }
   // 回退到硬编码列表（保持向后兼容）
