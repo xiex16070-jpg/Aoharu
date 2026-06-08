@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:14:57.558Z
+// 生成时间: 2026-06-08T09:16:00.324Z
 // 图片总数: 84
-// 校验码: 84415deb
+// 校验码: 288fa1f7
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:14:57.558Z",
+  "generated": "2026-06-08T09:15:58.914Z",
   "totalImages": 82,
   "categories": [
     {
@@ -600,7 +600,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/向日葵和小太阳.webp",
       "category": 2,
       "size": 84086,
-      "mtime": 1780739526685.189
+      "mtime": 1780739526685.189,
+      "overrides": {
+        "title": "向日葵和小太阳",
+        "category": 2,
+        "note": "下北泽的大天使！",
+        "hidden": false
+      }
     },
     {
       "name": "小魔女学院.jpg",
@@ -806,6 +812,34 @@ const GALLERY_MANIFEST = {
       "明日酱的水手服.png",
       "K-ON!.jpg",
       "SBR.jpeg"
+    ],
+    "4": [
+      "第一苍系.jpg",
+      "叮铃哐啷.jpg",
+      "二阶堂希罗.jpg",
+      "非人少女.jpg",
+      "绯樱.jpg",
+      "哥伦比亚.jpg",
+      "海瑟音.jpg",
+      "贺阳燐羽.jpg",
+      "花海.jpg",
+      "花之精灵.jpg",
+      "空月之歌.jpg",
+      "拉米尔.jpg",
+      "恋人不行.jpg",
+      "魔法少女的魔法裁判.jpg",
+      "一只傻鱼.jpg",
+      "叛逆期.jpg",
+      "秦谷美玲.jpg",
+      "全知.webp",
+      "阮梅.jpg",
+      "软软的.jpg",
+      "桃&绿.webp",
+      "学院偶像大师.jpg",
+      "战场原荡漾.jpg",
+      "知更鸟.jpg",
+      "fly me to the moon.jpg",
+      "kotone.jpg"
     ]
   }
 };
