@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-07T16:54:52.903Z
-// 图片总数: 82
-// 校验码: e5e58b3aced1ef7c
+// 生成时间: 2026-06-08T03:24:14.613Z
+// 图片总数: 84
+// 校验码: 26688a31
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-07T16:54:52.903Z",
+  "generated": "2026-06-08T03:24:12.946Z",
   "totalImages": 82,
   "categories": [
     {
@@ -341,7 +341,7 @@ const GALLERY_MANIFEST = {
       "size": 481579,
       "mtime": 1780739550528.395,
       "overrides": {
-        "title": "魔逆转时间的公式",
+        "title": "逆转时间的公式",
         "category": 1,
         "note": "为你，千千万万遍",
         "hidden": false
@@ -749,5 +749,27 @@ const GALLERY_MANIFEST = {
       "size": 1239949,
       "mtime": 1780726409480.0088
     }
-  ]
+  ],
+  "imageOrder": {
+    "2": [
+      "波虹.webp",
+      "波凉.webp",
+      "波喜多.webp",
+      "虹凉.webp",
+      "超时空辉夜姬！.jpg",
+      "结束乐队.jpg",
+      "明日酱的水手服.png",
+      "请问你今天要来点兔子吗？.jpg",
+      "甚至能喜欢上恋爱中的自己.png",
+      "生日快乐.jpg",
+      "天童爱丽丝.jpg",
+      "物语.png",
+      "夕立方程式.jpg",
+      "向日葵和小太阳.webp",
+      "ALICE&KEY.jpg",
+      "K-ON!.jpg",
+      "ROGER！.webp",
+      "SBR.jpeg"
+    ]
+  }
 };
