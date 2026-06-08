@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:17:03.799Z
+// 生成时间: 2026-06-08T09:18:15.925Z
 // 图片总数: 84
-// 校验码: 518b22e5
+// 校验码: 4e0fb45d
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:16:52.350Z",
+  "generated": "2026-06-08T09:18:14.506Z",
   "totalImages": 82,
   "categories": [
     {
