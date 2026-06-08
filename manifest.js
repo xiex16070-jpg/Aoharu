@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:11:38.496Z
+// 生成时间: 2026-06-08T09:12:39.858Z
 // 图片总数: 84
-// 校验码: 28c07167
+// 校验码: -2ccb5c28
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:11:37.262Z",
+  "generated": "2026-06-08T09:12:32.751Z",
   "totalImages": 82,
   "categories": [
     {
@@ -166,7 +166,13 @@ const GALLERY_MANIFEST = {
       "src": "近来的优秀作品/叮铃哐啷.jpg",
       "category": 4,
       "size": 435884,
-      "mtime": 1780649244611.7505
+      "mtime": 1780649244611.7505,
+      "overrides": {
+        "title": "叮铃哐啷",
+        "category": 4,
+        "note": "伊涅芙的爱诺，爱诺的伊涅芙！",
+        "hidden": false
+      }
     },
     {
       "name": "二阶堂希罗.jpg",
