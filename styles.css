@@ -1925,3 +1925,651 @@ h2 {
   background: rgba(255, 248, 240, 0.95);
   border-color: var(--border-strong);
 }
+/* ===== 拖拽排序样式 ===== */
+body.dragging {
+  cursor: grabbing !important;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.admin-mode .gallery-item {
+  cursor: grab;
+}
+
+.admin-mode .gallery-item:active {
+  cursor: grabbing;
+}
+
+.gallery-item.drag-hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.gallery-item.drag-placeholder {
+  background: rgba(99, 102, 241, 0.1);
+  border: 2px dashed rgba(99, 102, 241, 0.5);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.gallery-item.drag-clone {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  transform: rotate(2deg) scale(1.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  opacity: 0.9;
+  transition: none;
+}
+
+.admin-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(99, 102, 241, 0.9);
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ===== 入场动画 ===== */
+.gallery-item.fade-in {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 图片悬停效果 ===== */
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.img-wrapper img:not(.loaded) {
+  filter: blur(10px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.img-wrapper img.loaded {
+  filter: none;
+}
+
+.gallery-item:hover .img-wrapper img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gallery-item:hover .img-overlay {
+  opacity: 1;
+}
+
+.img-title {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img-note {
+  font-size: 12px;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Lightbox 优化 ===== */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-title {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-note {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.lightbox-admin-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+/* ===== 编辑对话框 ===== */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.dialog-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dialog-content {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-content h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+.dialog-content label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.dialog-content input,
+.dialog-content textarea,
+.dialog-content select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.dialog-content input:focus,
+.dialog-content textarea:focus,
+.dialog-content select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.dialog-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #555;
+}
+
+.btn-cancel:hover {
+  background: #e5e7eb;
+}
+
+.btn-save {
+  background: #6366f1;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #4f46e5;
+}
+
+/* ===== Toast 提示 ===== */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: white;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-info {
+  background: #3b82f6;
+}
+
+.toast-success {
+  background: #10b981;
+}
+
+.toast-error {
+  background: #ef4444;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 16px;
+}
+
+/* ===== 隐藏作品标识（管理员可见） ===== */
+.hidden-item {
+  opacity: 0.5;
+  border: 2px dashed #ef4444;
+  border-radius: 12px;
+}
+
+/* ===== 分类栏 ===== */
+#category-bar {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: white;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.category-btn.active {
+  background: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}
+
+/* ===== 同步状态徽章 ===== */
+.sync-badge {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  z-index: 9000;
+  transition: all 0.3s;
+}
+
+.sync-syncing {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.sync-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.sync-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== 管理员按钮 ===== */
+.admin-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.admin-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .lightbox-title {
+    font-size: 15px;
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  .dialog-content {
+    padding: 24px;
+    margin: 16px;
+  }
+
+  #toast-container {
+    top: auto;
+    bottom: 20px;
+    right: 16px;
+    left: 16px;
+  }
+
+  .toast {
+    transform: translateY(100%);
+  }
+
+  .toast.show {
+    transform: translateY(0);
+  }
+}
+/* ============================================================
+   🎯 拖拽排序样式（管理员长按触发）
+   ============================================================ */
+
+/* 管理员模式下卡片增加拖拽光标提示 */
+body.admin-mode .gallery-card {
+  cursor: pointer;
+}
+
+/* 拖拽激活状态 */
+body.dragging {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+body.dragging * {
+  cursor: grabbing !important;
+}
+
+/* 正在拖拽的源卡片（隐藏） */
+.gallery-card.drag-active {
+  opacity: 0.3 !important;
+  transform: scale(0.95) !important;
+  pointer-events: none;
+}
+
+/* 拖拽幽灵（跟随鼠标的克隆） */
+.drag-ghost {
+  border-radius: 24px;
+  overflow: hidden;
+  will-change: transform;
+  transition: none !important;
+}
+
+.drag-ghost .card-admin-actions,
+.drag-ghost .card-drag-hint {
+  display: none !important;
+}
+
+/* 占位符（显示放置位置） */
+.gallery-card.drag-placeholder {
+  background: rgba(124, 184, 156, 0.08) !important;
+  border: 2px dashed rgba(124, 184, 156, 0.5) !important;
+  border-radius: 24px;
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: none;
+  box-shadow: none !important;
+}
+
+.gallery-card.drag-placeholder::before,
+.gallery-card.drag-placeholder .gallery-card-skeleton,
+.gallery-card.drag-placeholder .gallery-card-label,
+.gallery-card.drag-placeholder .gallery-card-overlay,
+.gallery-card.drag-placeholder .gallery-card-category,
+.gallery-card.drag-placeholder .card-admin-actions,
+.gallery-card.drag-placeholder .card-drag-hint {
+  display: none !important;
+}
+
+/* 拖拽手柄图标 */
+.card-drag-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 248, 240, 0.85);
+  border: 1px solid var(--border-light);
+  color: var(--muted);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(8px);
+  letter-spacing: 1px;
+}
+
+body.admin-mode .gallery-card:hover .card-drag-hint {
+  opacity: 0.7;
+}
+
+body.admin-mode .gallery-card:hover .card-drag-hint:hover {
+  opacity: 1;
+}
+
+/* 拖拽 Toast 提示 */
+.drag-toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 9999;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: rgba(255, 252, 247, 0.95);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 12px 40px rgba(139, 122, 107, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.drag-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 拖拽时禁止卡片出场动画干扰 */
+body.dragging .gallery-card {
+  transition: none !important;
+}
+
+body.dragging .gallery-card.drag-placeholder {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 移动端拖拽优化 */
+@media (max-width: 800px) {
+  .card-drag-hint {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .drag-toast {
+    bottom: 24px;
+    padding: 10px 20px;
+    font-size: 0.82rem;
+  }
+}
