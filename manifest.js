@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:10:29.943Z
+// 生成时间: 2026-06-08T09:11:38.496Z
 // 图片总数: 84
-// 校验码: af1efdf6
+// 校验码: 28c07167
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:10:28.573Z",
+  "generated": "2026-06-08T09:11:37.262Z",
   "totalImages": 82,
   "categories": [
     {
@@ -64,7 +64,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/宝石之国.jpg",
       "category": 3,
       "size": 1008686,
-      "mtime": 1780649270937.519
+      "mtime": 1780649270937.519,
+      "overrides": {
+        "title": "宝石之国",
+        "category": 3,
+        "note": "“冬日从你那里夺去的，春日会如数奉还”",
+        "hidden": false
+      }
     },
     {
       "name": "波虹.webp",
