@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T15:01:49.152Z
+// 生成时间: 2026-06-08T15:03:09.394Z
 // 图片总数: 84
-// 校验码: -7ab02452
+// 校验码: efeb79c911a1593b
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T15:01:48.769Z",
-  "totalImages": 82,
+  "generated": "2026-06-08T15:03:09.394Z",
+  "totalImages": 84,
   "categories": [
     {
       "id": 1,
@@ -159,6 +159,13 @@ const GALLERY_MANIFEST = {
       "category": 3,
       "size": 425979,
       "mtime": 1780739547735.6616
+    },
+    {
+      "name": "刀剑神域.jpg",
+      "src": "入坑和启蒙/刀剑神域.jpg",
+      "category": 1,
+      "size": 252325,
+      "mtime": 1780930468080.9185
     },
     {
       "name": "第一苍系.jpg",
@@ -682,6 +689,13 @@ const GALLERY_MANIFEST = {
       }
     },
     {
+      "name": "狱门抚子在此.jpg",
+      "src": "那些无可替代的夏天/狱门抚子在此.jpg",
+      "category": 3,
+      "size": 568322,
+      "mtime": 1780930469900.6912
+    },
+    {
       "name": "战场原荡漾.jpg",
       "src": "近来的优秀作品/战场原荡漾.jpg",
       "category": 4,
@@ -803,55 +817,5 @@ const GALLERY_MANIFEST = {
       "size": 1239949,
       "mtime": 1780726409480.0088
     }
-  ],
-  "imageOrder": {
-    "2": [
-      "波虹.webp",
-      "波凉.webp",
-      "波喜多.webp",
-      "虹凉.webp",
-      "超时空辉夜姬！.jpg",
-      "结束乐队.jpg",
-      "向日葵和小太阳.webp",
-      "请问你今天要来点兔子吗？.jpg",
-      "ROGER！.webp",
-      "生日快乐.jpg",
-      "天童爱丽丝.jpg",
-      "ALICE&KEY.jpg",
-      "物语.png",
-      "夕立方程式.jpg",
-      "甚至能喜欢上恋爱中的自己.png",
-      "明日酱的水手服.png",
-      "K-ON!.jpg",
-      "SBR.jpeg"
-    ],
-    "4": [
-      "第一苍系.jpg",
-      "叮铃哐啷.jpg",
-      "二阶堂希罗.jpg",
-      "非人少女.jpg",
-      "绯樱.jpg",
-      "哥伦比亚.jpg",
-      "海瑟音.jpg",
-      "贺阳燐羽.jpg",
-      "花海.jpg",
-      "花之精灵.jpg",
-      "空月之歌.jpg",
-      "拉米尔.jpg",
-      "恋人不行.jpg",
-      "魔法少女的魔法裁判.jpg",
-      "一只傻鱼.jpg",
-      "fly me to the moon.jpg",
-      "秦谷美玲.jpg",
-      "全知.webp",
-      "阮梅.jpg",
-      "叛逆期.jpg",
-      "软软的.jpg",
-      "桃&绿.webp",
-      "学院偶像大师.jpg",
-      "战场原荡漾.jpg",
-      "知更鸟.jpg",
-      "kotone.jpg"
-    ]
-  }
+  ]
 };
