@@ -1058,14 +1058,12 @@ function createGalleryCard(item, index) {
   overlay.className = 'gallery-card-overlay';
   card.appendChild(overlay);
 
-  card.addEventListener('click', (e) => {
+    card.addEventListener('click', (e) => {
     if (e.target.closest('.card-admin-actions')) return;
     if (card.classList.contains('drag-active')) return;
-    const realIndex = imageSources.findIndex(s => s.src === item.src && s.name === item.name);
-    if (realIndex >= 0) {
-      syncToStorage();
-      window.open(`detail.html?index=${realIndex}`, '_blank', 'noopener,noreferrer');
-    }
+    syncToStorage();
+    // 使用文件名标识替代数字索引
+    window.open(`detail.html?name=${encodeURIComponent(item.name)}`, '_blank', 'noopener,noreferrer');
   });
 
   return card;

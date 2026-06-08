@@ -6,177 +6,133 @@
   <title>查看作品 - 贝贝的收藏</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ===== Detail Page Specific Styles ===== */
-    .detail-shell {
-      position: relative;
+    /* ===== Detail Page Styles ===== */
+    .detail-page {
       min-height: 100vh;
-      padding: 24px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
     }
 
-    .detail-topbar {
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      padding: 12px 22px;
-      margin-bottom: 24px;
-      border-radius: 30px;
-      background: rgba(255, 252, 247, 0.88);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-    }
-
-    .detail-back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 18px;
+    .detail-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      padding: 10px 20px;
       border-radius: 999px;
       border: 1px solid var(--border-light);
-      background: rgba(139, 122, 107, 0.06);
+      background: rgba(255, 252, 247, 0.92);
       color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 500;
+      font-size: 0.9rem;
+      font-weight: 600;
       cursor: pointer;
       text-decoration: none;
       transition: background 0.2s ease, transform 0.2s ease;
-      font-family: inherit;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    .detail-back-btn:hover {
-      background: rgba(139, 122, 107, 0.12);
-      transform: translateX(-2px);
+    .detail-back:hover {
+      background: rgba(139, 122, 107, 0.1);
+      transform: translateY(-1px);
     }
 
-    .detail-nav-group {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .detail-nav-btn {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--border-light);
-      background: rgba(139, 122, 107, 0.06);
-      color: var(--text);
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-      font-family: inherit;
-    }
-
-    .detail-nav-btn:hover {
-      background: rgba(124, 184, 156, 0.12);
-      border-color: rgba(124, 184, 156, 0.3);
-    }
-
-    .detail-nav-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .detail-counter {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(124, 184, 156, 0.08);
-    }
-
-    .detail-shortcuts-hint {
-      font-size: 0.75rem;
-      color: var(--muted);
-      opacity: 0.6;
-    }
-
-    /* Main content area */
-    .detail-main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 28px;
-      max-width: 1400px;
-      margin: 0 auto;
+    .detail-container {
+      max-width: 1200px;
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+      margin-top: 60px;
     }
 
-    .detail-image-wrapper {
+    .detail-image-area {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 24px;
-      background: rgba(0, 0, 0, 0.04);
-      border: 1px solid var(--border-light);
       overflow: hidden;
+      background: rgba(0, 0, 0, 0.04);
       min-height: 400px;
-      max-height: calc(100vh - 200px);
+      max-height: 80vh;
     }
 
-    .detail-image-wrapper img {
+    .detail-image-area img {
       max-width: 100%;
-      max-height: 100%;
+      max-height: 80vh;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 20px;
       user-select: none;
       -webkit-user-drag: none;
-      transition: opacity 0.4s ease;
     }
 
-    .detail-image-wrapper img.loading {
-      opacity: 0.3;
-    }
-
-    .detail-image-loader {
+    .detail-nav-btn {
       position: absolute;
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(139, 122, 107, 0.08);
-      border-top-color: var(--accent);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      opacity: 0;
-      pointer-events: none;
+      border: 1px solid var(--border-light);
+      background: rgba(255, 248, 240, 0.9);
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      line-height: 1;
     }
 
-    .detail-image-loader.active {
-      opacity: 1;
+    .detail-nav-btn:hover {
+      background: rgba(139, 122, 107, 0.12);
+      transform: translateY(-50%) scale(1.06);
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .detail-nav-prev { left: 12px; }
+    .detail-nav-next { right: 12px; }
+
+    .detail-counter {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(255, 248, 240, 0.9);
+      border: 1px solid var(--border-light);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
     }
 
     .detail-info-panel {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255, 252, 247, 0.92);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    .detail-title-card {
-      padding: 24px;
-      border-radius: 20px;
-      background: rgba(255, 252, 247, 0.9);
-      border: 1px solid var(--border-light);
-      backdrop-filter: blur(12px);
-    }
-
-    .detail-title-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.5rem;
+    .detail-title {
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--text-heading);
-      line-height: 1.3;
       word-break: break-word;
     }
 
@@ -189,413 +145,337 @@
       background: rgba(124, 184, 156, 0.12);
       color: var(--accent);
       font-size: 0.85rem;
+      font-weight: 500;
+      width: fit-content;
+    }
+
+    .detail-memory-section {
+      margin-top: 8px;
+    }
+
+    .detail-memory-title {
+      font-size: 1rem;
       font-weight: 600;
-    }
-
-    .detail-memory-card {
-      padding: 24px;
-      border-radius: 20px;
-      background: rgba(255, 252, 247, 0.9);
-      border: 1px solid var(--border-light);
-      backdrop-filter: blur(12px);
-      flex: 1;
-    }
-
-    .detail-memory-card h3 {
-      margin: 0 0 14px;
-      font-size: 1.1rem;
       color: var(--text-heading);
+      margin-bottom: 8px;
     }
 
-    .detail-note-text {
+    .detail-note {
       color: var(--muted);
-      line-height: 1.9;
+      line-height: 1.8;
       white-space: pre-wrap;
-      font-size: 0.95rem;
-    }
-
-    .detail-note-text.empty {
-      font-style: italic;
-      opacity: 0.6;
+      font-size: 0.93rem;
     }
 
     .detail-edit-btn {
-      margin-top: 16px;
-      padding: 12px 20px;
+      margin-top: 12px;
+      padding: 10px 20px;
       border-radius: 999px;
       border: 1px solid rgba(232, 152, 110, 0.25);
-      background: rgba(232, 152, 110, 0.08);
+      background: rgba(232, 152, 110, 0.1);
       color: var(--accent-strong);
       font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
+      text-align: center;
+      text-decoration: none;
       transition: background 0.2s ease, transform 0.2s ease;
       display: none;
-      font-family: inherit;
     }
 
     .detail-edit-btn:hover {
-      background: rgba(232, 152, 110, 0.15);
+      background: rgba(232, 152, 110, 0.18);
       transform: translateY(-1px);
     }
 
     .detail-footer {
       text-align: center;
-      padding: 28px 0 12px;
-      color: var(--muted);
+      padding: 16px;
+      color: var(--accent);
       font-size: 0.85rem;
-      opacity: 0.6;
+      font-weight: 500;
     }
 
-    /* Edit Modal */
-    .detail-edit-modal {
+    .detail-keyboard-hint {
       position: fixed;
-      inset: 0;
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(42, 31, 20, 0.45);
-      backdrop-filter: blur(14px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .detail-edit-modal.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .detail-edit-panel {
-      position: relative;
-      width: 90%;
-      max-width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 32px 30px;
-      border-radius: 24px;
-      background: rgba(255, 252, 247, 0.98);
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255, 248, 240, 0.85);
       border: 1px solid var(--border-light);
-      box-shadow: 0 40px 120px rgba(139, 122, 107, 0.15);
-      transform: translateY(20px) scale(0.96);
-      transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+      color: var(--muted);
+      font-size: 0.78rem;
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
     }
 
-    .detail-edit-modal.active .detail-edit-panel {
-      transform: translateY(0) scale(1);
+    .detail-loader {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(139, 122, 107, 0.08);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
     }
 
-    /* Responsive */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .detail-error {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .detail-error h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--text-heading);
+    }
+
+    .detail-error p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
     @media (max-width: 900px) {
-      .detail-main {
+      .detail-container {
         grid-template-columns: 1fr;
+        margin-top: 50px;
       }
 
-      .detail-image-wrapper {
+      .detail-info-panel {
+        padding: 20px;
+      }
+
+      .detail-image-area {
         min-height: 280px;
-        max-height: 50vh;
       }
     }
 
     @media (max-width: 480px) {
-      .detail-shell {
-        padding: 12px;
+      .detail-back {
+        top: 12px;
+        left: 12px;
+        padding: 8px 14px;
+        font-size: 0.82rem;
       }
 
-      .detail-topbar {
-        padding: 10px 14px;
-        border-radius: 20px;
-      }
-
-      .detail-back-btn,
       .detail-nav-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
       }
 
-      .detail-title-card,
-      .detail-memory-card {
-        padding: 18px;
-      }
-
-      .detail-title-card h2 {
+      .detail-title {
         font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="detail-shell">
-    <!-- Particle backgrounds -->
-    <canvas class="particle-canvas" id="particleCanvas"></canvas>
-    <canvas class="sakura-canvas" id="sakuraCanvas"></canvas>
+  <div class="page-shell">
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <canvas id="sakuraCanvas" class="sakura-canvas"></canvas>
 
-    <!-- Top navigation bar -->
-    <nav class="detail-topbar">
-      <a href="index.html" class="detail-back-btn" id="backBtn">← 返回画廊</a>
-      <div class="detail-nav-group">
-        <button class="detail-nav-btn" id="prevBtn" title="上一张 (←)">◂ 上一张</button>
-        <span class="detail-counter" id="detailCounter">1 / 1</span>
-        <button class="detail-nav-btn" id="nextBtn" title="下一张 (→)">下一张 ▸</button>
-      </div>
-      <span class="detail-shortcuts-hint">⌨️ ← → 切换 · ESC 返回</span>
-    </nav>
+    <a href="index.html" class="detail-back">← 返回画廊</a>
 
-    <!-- Main content -->
-    <div class="detail-main">
-      <!-- Image area -->
-      <div class="detail-image-wrapper" id="imageWrapper">
-        <div class="detail-image-loader" id="imageLoader"></div>
-        <img id="detailImage" src="" alt="作品图片">
-      </div>
-
-      <!-- Info panel -->
-      <aside class="detail-info-panel">
-        <div class="detail-title-card">
-          <h2 id="detailTitle">🌸 加载中...</h2>
-          <span class="detail-category-badge" id="detailCategory"></span>
+    <div class="detail-page">
+      <div class="detail-container" id="detailContainer" style="display:none;">
+        <!-- Image Area -->
+        <div class="detail-image-area" id="detailImageArea">
+          <div class="detail-loader" id="detailLoader"></div>
+          <img id="detailImage" src="" alt="" />
+          <button class="detail-nav-btn detail-nav-prev" id="detailPrev" title="上一张">◂</button>
+          <button class="detail-nav-btn detail-nav-next" id="detailNext" title="下一张">▸</button>
+          <div class="detail-counter" id="detailCounter">1 / 1</div>
         </div>
 
-        <div class="detail-memory-card">
-          <h3>📝 贝贝的回忆</h3>
-          <p class="detail-note-text" id="detailNote">加载中...</p>
+        <!-- Info Panel -->
+        <div class="detail-info-panel">
+          <div class="detail-title" id="detailTitle">🌸 加载中...</div>
+          <div class="detail-category-badge" id="detailCategory"></div>
+          <div class="detail-memory-section">
+            <div class="detail-memory-title" id="detailMemoryTitle">📝 贝贝的回忆</div>
+            <div class="detail-note" id="detailNote">加载中...</div>
+          </div>
+          <a class="detail-edit-btn" id="detailEditBtn">✏️ 编辑此作品（管理）</a>
         </div>
-
-        <button class="detail-edit-btn" id="detailEditBtn">✏️ 编辑此作品（管理）</button>
-      </aside>
-    </div>
-
-    <!-- Footer -->
-    <footer class="detail-footer">
-      💚 每一张作品，都是珍贵的回忆
-    </footer>
-
-    <!-- Edit Modal -->
-    <div class="detail-edit-modal" id="editModal" aria-hidden="true">
-      <div class="detail-edit-panel">
-        <button class="modal-close" id="editModalClose">✕</button>
-        <div class="modal-icon">✏️</div>
-        <h3 class="modal-title">编辑作品信息</h3>
-        <form class="modal-form" id="editForm">
-          <input type="hidden" id="editFilename">
-          <label class="form-label">
-            <span>作品名称</span>
-            <input type="text" class="form-input" id="editTitle" maxlength="200" required>
-          </label>
-          <label class="form-label">
-            <span>回忆简介</span>
-            <textarea class="form-textarea" id="editNote" rows="4" maxlength="5000" placeholder="写下关于这张作品的回忆..."></textarea>
-          </label>
-          <label class="form-label">
-            <span>所属分类</span>
-            <select class="form-select" id="editCategory"></select>
-          </label>
-          <p class="form-success" id="editSuccess" style="display:none;">✅ 已保存</p>
-          <button type="submit" class="btn form-submit">💾 保存修改</button>
-        </form>
       </div>
+
+      <!-- Error state -->
+      <div class="detail-error" id="detailError" style="display:none;">
+        <h2>😢 未找到作品</h2>
+        <p>该作品可能已被移除或链接无效。</p>
+        <a href="index.html" class="btn">返回画廊</a>
+      </div>
+
+      <div class="detail-footer">💚 每一张作品，都是珍贵的回忆</div>
     </div>
+
+    <div class="detail-keyboard-hint">⌨️ ← → 切换 · ESC 返回</div>
   </div>
 
-  <!-- Load manifest data -->
   <script src="manifest.js"></script>
-  <!-- Detail page logic -->
   <script>
-  (() => {
-    'use strict';
+    // ============================================================
+    //  Detail Page — 使用文件名(name)标识替代数字索引
+    // ============================================================
 
-    // ===== Constants =====
     const STORAGE_KEY = 'gallery_admin_data';
     const AUTH_KEY = 'gallery_admin_auth';
     const ORDER_KEY = 'gallery_image_order';
 
-    // ===== Categories =====
-    const categories = (typeof GALLERY_MANIFEST !== 'undefined' && GALLERY_MANIFEST.categories)
-      ? GALLERY_MANIFEST.categories.map(c => ({ id: c.id, name: c.name, icon: c.icon, desc: c.desc }))
-      : [
-        { id: 1, name: '入坑和启蒙', icon: '🌱' },
-        { id: 2, name: '青春和热爱', icon: '💫' },
-        { id: 3, name: '那些无可替代的夏天', icon: '☀️' },
-        { id: 4, name: '近来的优秀作品', icon: '🌟' },
-        { id: 5, name: '其他优秀作品', icon: '✨' }
-      ];
-
-    // ===== Utility =====
+    // ===== 安全工具 =====
     function sanitizeText(str, maxLen = 5000) {
       if (!str || typeof str !== 'string') return '';
-      return str.slice(0, maxLen).replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').trim();
+      return str.slice(0, maxLen).replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/on\w+\s*=/gi, '').trim();
+    }
+
+    function escapeHtml(str) {
+      if (!str || typeof str !== 'string') return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
 
     function safeParseJSON(raw, fallback = null) {
       if (!raw || typeof raw !== 'string') return fallback;
-      try { return JSON.parse(raw); } catch (e) { return fallback; }
+      try { const p = JSON.parse(raw); return (typeof p === 'object' && p !== null) ? p : fallback; } catch (e) { return fallback; }
     }
 
-    function loadWorksData() {
-      try { return safeParseJSON(localStorage.getItem(STORAGE_KEY), {}); }
-      catch (e) { return {}; }
-    }
+    // ===== 分类数据 =====
+    const categories = (typeof GALLERY_MANIFEST !== 'undefined' && GALLERY_MANIFEST.categories)
+      ? GALLERY_MANIFEST.categories.map(c => ({ id: c.id, name: c.name, icon: c.icon, desc: c.desc }))
+      : [
+          { id: 1, name: '入坑和启蒙', icon: '🌱' },
+          { id: 2, name: '青春和热爱', icon: '💫' },
+          { id: 3, name: '那些无可替代的夏天', icon: '☀️' },
+          { id: 4, name: '近来的优秀作品', icon: '🌟' },
+          { id: 5, name: '其他优秀作品', icon: '✨' },
+        ];
 
-    function saveWorksData(data) {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
-    }
-
-    function isAdminLoggedIn() {
-      try {
-        return (sessionStorage.getItem(AUTH_KEY) || localStorage.getItem(AUTH_KEY)) === 'true';
-      } catch (e) { return false; }
-    }
-
-    // ===== Build image list (same logic as main page) =====
-    function buildImageList() {
+    // ===== 构建可见图片列表 =====
+    function buildVisibleImages() {
       if (typeof GALLERY_MANIFEST === 'undefined' || !GALLERY_MANIFEST.images) return [];
 
-      const worksData = loadWorksData();
-      const images = [];
+      let worksData = {};
+      try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) worksData = JSON.parse(raw); } catch (e) {}
 
-      GALLERY_MANIFEST.images.forEach((img, i) => {
+      return GALLERY_MANIFEST.images.filter(img => {
         const saved = worksData[img.name];
-        const ov = img.overrides || null;
+        const ov = img.overrides;
+        // 排除隐藏的
+        if (saved && saved.hidden) return false;
+        if (ov && ov.hidden) return false;
+        return true;
+      }).map(img => {
+        const saved = worksData[img.name];
+        const ov = img.overrides;
 
-        // Check hidden
-        if (saved && saved.hidden) return;
-        if (ov && ov.hidden && !(saved && saved.hidden === false)) return;
+        const title = (saved && saved.title) ? saved.title
+          : (ov && ov.title) ? ov.title
+          : img.name.replace(/\.[^.]+$/, '');
 
-        // Determine title
-        let title = img.name.replace(/\.[^.]+$/, '');
-        if (saved && saved.title) title = sanitizeText(saved.title, 200);
-        else if (ov && ov.title) title = sanitizeText(ov.title, 200);
+        const note = (saved && typeof saved.note === 'string') ? saved.note
+          : (ov && typeof ov.note === 'string') ? ov.note
+          : '';
 
-        // Determine note
-        let note = '';
-        if (saved && typeof saved.note === 'string') note = sanitizeText(saved.note, 5000);
-        else if (ov && typeof ov.note === 'string') note = sanitizeText(ov.note, 5000);
+        const category = (saved && typeof saved.category === 'number' && saved.category >= 1 && saved.category <= 5) ? saved.category
+          : (ov && typeof ov.category === 'number' && ov.category >= 1 && ov.category <= 5) ? ov.category
+          : img.category;
 
-        // Determine category
-        let category = img.category || 5;
-        if (saved && typeof saved.category === 'number' && saved.category >= 1 && saved.category <= 5) {
-          category = saved.category;
-        } else if (ov && typeof ov.category === 'number' && ov.category >= 1 && ov.category <= 5) {
-          category = ov.category;
-        }
-
-        images.push({
+        return {
           name: img.name,
           src: img.src,
-          title,
-          note,
-          category,
-          mtime: img.mtime || 0
-        });
+          title: title,
+          note: note,
+          category: category,
+          mtime: img.mtime
+        };
       });
-
-      // Apply custom order if exists
-      try {
-        const orderRaw = localStorage.getItem(ORDER_KEY);
-        if (orderRaw) {
-          const orderData = JSON.parse(orderRaw);
-          if (orderData && typeof orderData === 'object') {
-            // Re-sort images by category using saved order
-            const ordered = [];
-            const grouped = {};
-            images.forEach(img => {
-              const catId = img.category;
-              if (!grouped[catId]) grouped[catId] = [];
-              grouped[catId].push(img);
-            });
-
-            categories.forEach(cat => {
-              const catImages = grouped[cat.id] || [];
-              const catOrder = orderData[cat.id];
-              if (catOrder && Array.isArray(catOrder)) {
-                // Sort by saved order
-                const orderMap = new Map(catOrder.map((name, idx) => [name, idx]));
-                catImages.sort((a, b) => {
-                  const ai = orderMap.has(a.name) ? orderMap.get(a.name) : 9999;
-                  const bi = orderMap.has(b.name) ? orderMap.get(b.name) : 9999;
-                  return ai - bi;
-                });
-              }
-              ordered.push(...catImages);
-            });
-
-            return ordered;
-          }
-        }
-      } catch (e) {}
-
-      return images;
     }
 
-    // ===== DOM References =====
+    // ===== 主逻辑 =====
+    const allImages = buildVisibleImages();
+    const params = new URLSearchParams(window.location.search);
+
+    // 支持 name 参数（新方式）和 index 参数（向后兼容）
+    let currentIndex = -1;
+
+    const nameParam = params.get('name');
+    const indexParam = params.get('index');
+
+    if (nameParam) {
+      // 新方式：通过文件名查找
+      const decodedName = decodeURIComponent(nameParam);
+      currentIndex = allImages.findIndex(img => img.name === decodedName);
+    } else if (indexParam !== null) {
+      // 向后兼容：数字索引（但可能不准确）
+      const idx = parseInt(indexParam, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < allImages.length) {
+        currentIndex = idx;
+      }
+    }
+
+    // DOM 引用
+    const detailContainer = document.getElementById('detailContainer');
+    const detailError = document.getElementById('detailError');
     const detailImage = document.getElementById('detailImage');
-    const imageLoader = document.getElementById('imageLoader');
+    const detailLoader = document.getElementById('detailLoader');
     const detailTitle = document.getElementById('detailTitle');
     const detailCategory = document.getElementById('detailCategory');
     const detailNote = document.getElementById('detailNote');
+    const detailMemoryTitle = document.getElementById('detailMemoryTitle');
     const detailCounter = document.getElementById('detailCounter');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const detailPrev = document.getElementById('detailPrev');
+    const detailNext = document.getElementById('detailNext');
     const detailEditBtn = document.getElementById('detailEditBtn');
-    const editModal = document.getElementById('editModal');
-    const editModalClose = document.getElementById('editModalClose');
-    const editForm = document.getElementById('editForm');
-    const editFilename = document.getElementById('editFilename');
-    const editTitle = document.getElementById('editTitle');
-    const editNote = document.getElementById('editNote');
-    const editCategory = document.getElementById('editCategory');
-    const editSuccess = document.getElementById('editSuccess');
 
-    // ===== State =====
-    const imageList = buildImageList();
-    let currentIndex = 0;
-
-    // Read index from URL
-    const params = new URLSearchParams(window.location.search);
-    const urlIndex = parseInt(params.get('index'));
-    if (!isNaN(urlIndex) && urlIndex >= 0 && urlIndex < imageList.length) {
-      currentIndex = urlIndex;
+    if (currentIndex < 0 || allImages.length === 0) {
+      // 未找到
+      detailError.style.display = 'block';
+      detailContainer.style.display = 'none';
+    } else {
+      detailContainer.style.display = '';
+      detailError.style.display = 'none';
+      renderDetail();
     }
 
-    // ===== Render current image =====
-    function render() {
-      if (imageList.length === 0) {
-        detailTitle.textContent = '暂无作品';
-        detailNote.textContent = '';
-        detailCategory.style.display = 'none';
-        detailCounter.textContent = '0 / 0';
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        return;
+    function renderDetail() {
+      const item = allImages[currentIndex];
+      if (!item) return;
+
+      // 更新 URL（不刷新页面），保持使用 name 参数
+      const newUrl = `detail.html?name=${encodeURIComponent(item.name)}`;
+      if (window.location.search !== `?name=${encodeURIComponent(item.name)}`) {
+        history.replaceState(null, '', newUrl);
       }
 
-      const item = imageList[currentIndex];
-
-      // Update counter
-      detailCounter.textContent = `${currentIndex + 1} / ${imageList.length}`;
-      prevBtn.disabled = (currentIndex === 0);
-      nextBtn.disabled = (currentIndex === imageList.length - 1);
-
-      // Load image
-      imageLoader.classList.add('active');
-      detailImage.classList.add('loading');
+      // 图片加载
+      detailLoader.style.display = '';
+      detailImage.style.opacity = '0';
+      detailImage.src = item.src;
+      detailImage.alt = sanitizeText(item.name);
       detailImage.onload = () => {
-        imageLoader.classList.remove('active');
-        detailImage.classList.remove('loading');
+        detailLoader.style.display = 'none';
+        detailImage.style.opacity = '1';
       };
       detailImage.onerror = () => {
-        imageLoader.classList.remove('active');
-        detailImage.classList.remove('loading');
+        detailLoader.style.display = 'none';
+        detailImage.style.opacity = '0.5';
       };
-      detailImage.src = item.src;
-      detailImage.alt = item.title || item.name;
 
-      // Update title
-      detailTitle.textContent = '🌸 ' + (item.title || item.name);
+      // 标题
+      detailTitle.textContent = sanitizeText(item.title || item.name.replace(/\.[^.]+$/, ''), 200);
+      document.title = `${sanitizeText(item.title, 60)} - 贝贝的收藏`;
 
-      // Update category
-      const cat = categories.find(c => c.id === item.category);
+      // 分类
+      const cat = categories.find(c => c.id === (item.category || 5));
       if (cat) {
         detailCategory.textContent = `${cat.icon} ${cat.name}`;
         detailCategory.style.display = '';
@@ -603,164 +483,64 @@
         detailCategory.style.display = 'none';
       }
 
-      // Update note — re-read from localStorage to get latest edits
-      const worksData = loadWorksData();
-      const saved = worksData[item.name];
-      let note = item.note || '';
-      if (saved && typeof saved.note === 'string') {
-        note = sanitizeText(saved.note, 5000);
-      }
+      // 回忆
+      const note = sanitizeText(item.note, 5000);
+      detailNote.textContent = note || '✏️ 等待贝贝写下回忆...';
+      detailMemoryTitle.textContent = note ? '📝 贝贝的回忆' : '📝 贝贝的回忆（待填写）';
 
-      if (note) {
-        detailNote.textContent = note;
-        detailNote.classList.remove('empty');
-      } else {
-        detailNote.textContent = '✏️ 等待贝贝写下回忆...';
-        detailNote.classList.add('empty');
-      }
+      // 计数器
+      detailCounter.textContent = `${currentIndex + 1} / ${allImages.length}`;
 
-      // Update URL without reload
-      const newUrl = `detail.html?index=${currentIndex}`;
-      history.replaceState(null, '', newUrl);
-
-      // Update page title
-      document.title = `${item.title || item.name} - 贝贝的收藏`;
-
-      // Admin edit button
-      if (isAdminLoggedIn()) {
+      // 管理员编辑按钮
+      const isAdmin = (sessionStorage.getItem(AUTH_KEY) || localStorage.getItem(AUTH_KEY)) === 'true';
+      if (isAdmin) {
         detailEditBtn.style.display = 'block';
+        detailEditBtn.href = `index.html#edit=${encodeURIComponent(item.name)}`;
+      } else {
+        detailEditBtn.style.display = 'none';
       }
     }
 
-    // ===== Navigation =====
-    function goNext() {
-      if (currentIndex < imageList.length - 1) {
-        currentIndex++;
-        render();
-      }
+    function navigate(direction) {
+      if (allImages.length <= 1) return;
+      currentIndex = (currentIndex + direction + allImages.length) % allImages.length;
+      renderDetail();
     }
 
-    function goPrev() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        render();
-      }
-    }
+    // 导航按钮
+    detailPrev.addEventListener('click', () => navigate(-1));
+    detailNext.addEventListener('click', () => navigate(1));
 
-    prevBtn.addEventListener('click', goPrev);
-    nextBtn.addEventListener('click', goNext);
-
-    // Keyboard navigation
+    // 键盘快捷键
     document.addEventListener('keydown', (e) => {
-      if (editModal.classList.contains('active')) return;
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
       switch (e.key) {
-        case 'ArrowLeft': goPrev(); break;
-        case 'ArrowRight': goNext(); break;
-        case 'Escape':
-          window.location.href = 'index.html';
-          break;
+        case 'ArrowLeft': navigate(-1); break;
+        case 'ArrowRight': navigate(1); break;
+        case 'Escape': window.location.href = 'index.html'; break;
       }
     });
 
-    // Touch swipe
+    // 触摸滑动
     let touchStartX = 0;
-    const imageWrapper = document.getElementById('imageWrapper');
-    imageWrapper.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
+    let touchMoved = false;
+    const imageArea = document.getElementById('detailImageArea');
+
+    imageArea.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) { touchStartX = e.touches[0].clientX; touchMoved = false; }
     }, { passive: true });
-    imageWrapper.addEventListener('touchend', (e) => {
+
+    imageArea.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && Math.abs(e.touches[0].clientX - touchStartX) > 20) touchMoved = true;
+    }, { passive: true });
+
+    imageArea.addEventListener('touchend', (e) => {
+      if (!touchMoved) return;
       const dx = (e.changedTouches[0]?.clientX || 0) - touchStartX;
-      if (Math.abs(dx) > 60) {
-        dx > 0 ? goPrev() : goNext();
-      }
+      if (Math.abs(dx) > 50) navigate(dx > 0 ? -1 : 1);
     });
 
-    // ===== Edit Modal =====
-    detailEditBtn.addEventListener('click', () => {
-      if (imageList.length === 0) return;
-      const item = imageList[currentIndex];
-      const worksData = loadWorksData();
-      const saved = worksData[item.name] || {};
-
-      editFilename.value = item.name;
-      editTitle.value = saved.title || item.title || '';
-      editNote.value = saved.note || item.note || '';
-
-      // Populate category select
-      editCategory.innerHTML = '';
-      categories.forEach(cat => {
-        const opt = document.createElement('option');
-        opt.value = cat.id;
-        opt.textContent = `${cat.icon} ${cat.name}`;
-        const currentCat = saved.category || item.category || 5;
-        if (cat.id === currentCat) opt.selected = true;
-        editCategory.appendChild(opt);
-      });
-
-      editSuccess.style.display = 'none';
-      editModal.classList.add('active');
-      editModal.setAttribute('aria-hidden', 'false');
-    });
-
-    editModalClose.addEventListener('click', () => {
-      editModal.classList.remove('active');
-      editModal.setAttribute('aria-hidden', 'true');
-    });
-
-    editModal.addEventListener('click', (e) => {
-      if (e.target === editModal) {
-        editModal.classList.remove('active');
-        editModal.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    editForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const filename = editFilename.value;
-      if (!filename) return;
-
-      const title = sanitizeText(editTitle.value.trim(), 200);
-      const note = sanitizeText(editNote.value.trim(), 5000);
-      const category = Math.max(1, Math.min(5, parseInt(editCategory.value) || 5));
-
-      const worksData = loadWorksData();
-      worksData[filename] = { ...worksData[filename], title, note, category };
-      saveWorksData(worksData);
-
-      // Update current item in list
-      const item = imageList[currentIndex];
-      if (item && item.name === filename) {
-        item.title = title || item.name;
-        item.note = note;
-        item.category = category;
-      }
-
-      editSuccess.style.display = 'block';
-      setTimeout(() => { editSuccess.style.display = 'none'; }, 1500);
-
-      // Re-render to show updated data
-      render();
-
-      // Trigger GitHub sync via main page on return
-      try {
-        localStorage.setItem('gallery_pending_sync', 'true');
-      } catch (e) {}
-    });
-
-    // ESC closes edit modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && editModal.classList.contains('active')) {
-        editModal.classList.remove('active');
-        editModal.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // ===== Initialize =====
-    render();
-
-    // ===== Minimal particles (reuse from main) =====
+    // ===== 粒子背景（简化版） =====
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
     const sakuraCanvas = document.getElementById('sakuraCanvas');
@@ -780,12 +560,9 @@
     const particles = [];
     for (let i = 0; i < 30; i++) {
       particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: 1 + Math.random() * 1.5,
-        alpha: 0.04 + Math.random() * 0.1
+        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        radius: 1 + Math.random() * 1.5, alpha: 0.04 + Math.random() * 0.1
       });
     }
 
@@ -793,10 +570,10 @@
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = window.innerWidth;
-        if (p.x > window.innerWidth) p.x = 0;
-        if (p.y < 0) p.y = window.innerHeight;
-        if (p.y > window.innerHeight) p.y = 0;
+        if (p.x < -20) p.x = window.innerWidth + 20;
+        if (p.x > window.innerWidth + 20) p.x = -20;
+        if (p.y < -20) p.y = window.innerHeight + 20;
+        if (p.y > window.innerHeight + 20) p.y = -20;
         ctx.beginPath();
         ctx.fillStyle = `rgba(124, 184, 156, ${p.alpha})`;
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -805,54 +582,43 @@
       requestAnimationFrame(animateParticles);
     }
 
-    const petals = [];
-    for (let i = 0; i < 18; i++) {
-      petals.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * -window.innerHeight,
-        size: 8 + Math.random() * 14,
-        speedY: 0.3 + Math.random() * 0.9,
+    const sakuraPetals = [];
+    for (let i = 0; i < 20; i++) {
+      sakuraPetals.push({
+        x: Math.random() * window.innerWidth, y: Math.random() * -window.innerHeight,
+        size: 8 + Math.random() * 14, speedY: 0.3 + Math.random() * 0.8,
         speedX: -0.2 + Math.random() * 0.4,
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
-        sway: Math.random() * Math.PI * 2,
-        swaySpeed: 0.01 + Math.random() * 0.015,
-        alpha: 0.3 + Math.random() * 0.4,
+        rotation: Math.random() * Math.PI * 2, rotationSpeed: (Math.random() - 0.5) * 0.02,
+        sway: Math.random() * Math.PI * 2, swaySpeed: 0.01 + Math.random() * 0.015,
+        swayAmount: 0.5 + Math.random() * 2, alpha: 0.3 + Math.random() * 0.4
       });
     }
 
     function animateSakura() {
       sakuraCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      petals.forEach(p => {
-        p.y += p.speedY;
-        p.sway += p.swaySpeed;
-        p.x += p.speedX + Math.sin(p.sway) * 0.5;
+      sakuraPetals.forEach(p => {
+        p.y += p.speedY; p.sway += p.swaySpeed;
+        p.x += p.speedX + Math.sin(p.sway) * p.swayAmount * 0.3;
         p.rotation += p.rotationSpeed;
-        if (p.y > window.innerHeight + 30) { p.y = -30; p.x = Math.random() * window.innerWidth; }
-        if (p.x < -30) p.x = window.innerWidth + 30;
-        if (p.x > window.innerWidth + 30) p.x = -30;
-
-        sakuraCtx.save();
-        sakuraCtx.translate(p.x, p.y);
-        sakuraCtx.rotate(p.rotation);
+        if (p.y > window.innerHeight + 40) { p.y = -40; p.x = Math.random() * window.innerWidth; }
+        if (p.x < -40) p.x = window.innerWidth + 40;
+        if (p.x > window.innerWidth + 40) p.x = -40;
+        sakuraCtx.save(); sakuraCtx.translate(p.x, p.y); sakuraCtx.rotate(p.rotation);
         sakuraCtx.globalAlpha = p.alpha;
         sakuraCtx.fillStyle = `rgba(255, 183, 197, ${p.alpha})`;
-        sakuraCtx.beginPath();
         const w = p.size * 0.35, h = p.size * 0.55;
-        sakuraCtx.moveTo(0, -h);
+        sakuraCtx.beginPath(); sakuraCtx.moveTo(0, -h);
         sakuraCtx.bezierCurveTo(w, -h * 0.6, w, h * 0.3, 0, h);
         sakuraCtx.bezierCurveTo(-w, h * 0.3, -w, -h * 0.6, 0, -h);
-        sakuraCtx.fill();
-        sakuraCtx.restore();
+        sakuraCtx.fill(); sakuraCtx.restore();
       });
       requestAnimationFrame(animateSakura);
     }
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
     animateParticles();
     animateSakura();
-  })();
+    window.addEventListener('resize', resizeCanvas);
   </script>
 </body>
 </html>
