@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:18:15.925Z
+// 生成时间: 2026-06-08T15:00:44.161Z
 // 图片总数: 84
-// 校验码: 4e0fb45d
+// 校验码: -17686d74
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:18:14.506Z",
+  "generated": "2026-06-08T15:00:43.345Z",
   "totalImages": 82,
   "categories": [
     {
@@ -471,7 +471,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/生生不息.jpg",
       "category": 3,
       "size": 862122,
-      "mtime": 1780739532133.969
+      "mtime": 1780739532133.969,
+      "overrides": {
+        "title": "绿色 生命",
+        "category": 3,
+        "note": "",
+        "hidden": false
+      }
     },
     {
       "name": "识之律者.jpg",
