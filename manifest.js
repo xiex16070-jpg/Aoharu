@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:16:00.324Z
+// 生成时间: 2026-06-08T09:17:03.799Z
 // 图片总数: 84
-// 校验码: 288fa1f7
+// 校验码: 518b22e5
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:15:58.914Z",
+  "generated": "2026-06-08T09:16:52.350Z",
   "totalImages": 82,
   "categories": [
     {
@@ -829,16 +829,16 @@ const GALLERY_MANIFEST = {
       "恋人不行.jpg",
       "魔法少女的魔法裁判.jpg",
       "一只傻鱼.jpg",
-      "叛逆期.jpg",
+      "fly me to the moon.jpg",
       "秦谷美玲.jpg",
       "全知.webp",
       "阮梅.jpg",
+      "叛逆期.jpg",
       "软软的.jpg",
       "桃&绿.webp",
       "学院偶像大师.jpg",
       "战场原荡漾.jpg",
       "知更鸟.jpg",
-      "fly me to the moon.jpg",
       "kotone.jpg"
     ]
   }
