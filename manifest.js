@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:12:39.858Z
+// 生成时间: 2026-06-08T09:13:57.813Z
 // 图片总数: 84
-// 校验码: -2ccb5c28
+// 校验码: -3ad93caa
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:12:32.751Z",
+  "generated": "2026-06-08T09:13:57.311Z",
   "totalImages": 82,
   "categories": [
     {
@@ -131,7 +131,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/出航.jpg",
       "category": 3,
       "size": 376689,
-      "mtime": 1780739553443.0105
+      "mtime": 1780739553443.0105,
+      "overrides": {
+        "title": "出航",
+        "category": 3,
+        "note": "“水手不会因为大海的危险放弃出海”",
+        "hidden": false
+      }
     },
     {
       "name": "初始之音.jpg",
@@ -750,7 +756,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/SBR.jpeg",
       "category": 2,
       "size": 1526227,
-      "mtime": 1780739525661.6917
+      "mtime": 1780739525661.6917,
+      "overrides": {
+        "title": "SBR",
+        "category": 2,
+        "note": "“乔尼，LESSON5哒”",
+        "hidden": false
+      }
     },
     {
       "name": "SBR1.jpeg",
