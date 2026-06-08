@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:08:18.306Z
+// 生成时间: 2026-06-08T09:10:29.943Z
 // 图片总数: 84
-// 校验码: 401365b9
+// 校验码: af1efdf6
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:08:16.457Z",
+  "generated": "2026-06-08T09:10:28.573Z",
   "totalImages": 82,
   "categories": [
     {
@@ -305,7 +305,13 @@ const GALLERY_MANIFEST = {
       "src": "其他优秀作品/灵感.jpg",
       "category": 5,
       "size": 823460,
-      "mtime": 1780649251626.5032
+      "mtime": 1780649251626.5032,
+      "overrides": {
+        "title": "灵感",
+        "category": 5,
+        "note": "“创作的灵感是我热爱的每一刻”",
+        "hidden": false
+      }
     },
     {
       "name": "绿色.jpg",
@@ -758,17 +764,17 @@ const GALLERY_MANIFEST = {
       "虹凉.webp",
       "超时空辉夜姬！.jpg",
       "结束乐队.jpg",
-      "明日酱的水手服.png",
+      "向日葵和小太阳.webp",
       "请问你今天要来点兔子吗？.jpg",
-      "甚至能喜欢上恋爱中的自己.png",
+      "ROGER！.webp",
       "生日快乐.jpg",
       "天童爱丽丝.jpg",
+      "ALICE&KEY.jpg",
       "物语.png",
       "夕立方程式.jpg",
-      "向日葵和小太阳.webp",
-      "ALICE&KEY.jpg",
+      "甚至能喜欢上恋爱中的自己.png",
+      "明日酱的水手服.png",
       "K-ON!.jpg",
-      "ROGER！.webp",
       "SBR.jpeg"
     ]
   }
