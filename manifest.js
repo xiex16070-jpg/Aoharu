@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T15:00:44.161Z
+// 生成时间: 2026-06-08T15:01:49.152Z
 // 图片总数: 84
-// 校验码: -17686d74
+// 校验码: -7ab02452
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T15:00:43.345Z",
+  "generated": "2026-06-08T15:01:48.769Z",
   "totalImages": 82,
   "categories": [
     {
@@ -376,7 +376,13 @@ const GALLERY_MANIFEST = {
       "src": "近来的优秀作品/叛逆期.jpg",
       "category": 4,
       "size": 1149599,
-      "mtime": 1780739535036.2014
+      "mtime": 1780739535036.2014,
+      "overrides": {
+        "title": "来自明天的礼物",
+        "category": 4,
+        "note": "",
+        "hidden": false
+      }
     },
     {
       "name": "千手百眼，天下人间.jpg",
