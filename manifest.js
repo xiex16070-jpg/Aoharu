@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-08T09:13:57.813Z
+// 生成时间: 2026-06-08T09:14:57.558Z
 // 图片总数: 84
-// 校验码: -3ad93caa
+// 校验码: 84415deb
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-08T09:13:57.311Z",
+  "generated": "2026-06-08T09:14:57.558Z",
   "totalImages": 82,
   "categories": [
     {
@@ -708,7 +708,13 @@ const GALLERY_MANIFEST = {
       "src": "青春和热爱/ALICE&KEY.jpg",
       "category": 2,
       "size": 1393974,
-      "mtime": 1780739534919.2053
+      "mtime": 1780739534919.2053,
+      "overrides": {
+        "title": "ALICE&KEY",
+        "category": 2,
+        "note": "“王女手握钥匙，方舟已静候多时”",
+        "hidden": false
+      }
     },
     {
       "name": "fly me to the moon.jpg",
