@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T13:57:29.836Z
-// 图片总数: 124
-// 校验码: -301653be
+// 生成时间: 2026-06-09T13:58:04.850Z
+// 图片总数: 127
+// 校验码: 45ec0a90f3b226ec
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T13:57:29.218Z",
-  "totalImages": 124,
+  "generated": "2026-06-09T13:58:04.850Z",
+  "totalImages": 127,
   "categories": [
     {
       "id": 1,
@@ -61,8 +61,8 @@ const GALLERY_MANIFEST = {
     },
     {
       "name": "败犬女主太多了.png",
-      "src": "近来的优秀作品/败犬女主太多了.png",
-      "category": 4,
+      "src": "那些无可替代的夏天/败犬女主太多了.png",
+      "category": 3,
       "size": 177638,
       "mtime": 1781000201876.3235
     },
@@ -75,8 +75,8 @@ const GALLERY_MANIFEST = {
     },
     {
       "name": "边缘行者.png",
-      "src": "近来的优秀作品/边缘行者.png",
-      "category": 4,
+      "src": "那些无可替代的夏天/边缘行者.png",
+      "category": 3,
       "size": 202148,
       "mtime": 1780999885352.0212
     },
@@ -152,8 +152,8 @@ const GALLERY_MANIFEST = {
     },
     {
       "name": "春岚.jpg",
-      "src": "那些无可替代的夏天/春岚.jpg",
-      "category": 3,
+      "src": "近来的优秀作品/春岚.jpg",
+      "category": 4,
       "size": 315583,
       "mtime": 1780973194000
     },
@@ -186,11 +186,25 @@ const GALLERY_MANIFEST = {
       "mtime": 1780972402000
     },
     {
+      "name": "东京食尸鬼.jpg",
+      "src": "入坑和启蒙/东京食尸鬼.jpg",
+      "category": 1,
+      "size": 191116,
+      "mtime": 1781011836704.6262
+    },
+    {
       "name": "二阶堂希罗.jpg",
       "src": "近来的优秀作品/二阶堂希罗.jpg",
       "category": 4,
       "size": 78731,
       "mtime": 1780972402000
+    },
+    {
+      "name": "反叛的鲁鲁修.png",
+      "src": "那些无可替代的夏天/反叛的鲁鲁修.png",
+      "category": 3,
+      "size": 249178,
+      "mtime": 1780999838483.9868
     },
     {
       "name": "非人少女.jpg",
@@ -212,6 +226,13 @@ const GALLERY_MANIFEST = {
       "category": 4,
       "size": 273136,
       "mtime": 1780972404000
+    },
+    {
+      "name": "孤独摇滚！.png",
+      "src": "近来的优秀作品/孤独摇滚！.png",
+      "category": 4,
+      "size": 203273,
+      "mtime": 1781000272985.2827
     },
     {
       "name": "孤独摇滚.png",
@@ -278,8 +299,8 @@ const GALLERY_MANIFEST = {
     },
     {
       "name": "花之精灵.jpg",
-      "src": "近来的优秀作品/花之精灵.jpg",
-      "category": 4,
+      "src": "其他优秀作品/花之精灵.jpg",
+      "category": 5,
       "size": 343809,
       "mtime": 1780972404000
     },
@@ -287,15 +308,15 @@ const GALLERY_MANIFEST = {
       "name": "化物语.png",
       "src": "入坑和启蒙/化物语.png",
       "category": 1,
-      "size": 58865,
-      "mtime": 1780972978000
+      "size": 196643,
+      "mtime": 1780999979037.726
     },
     {
-      "name": "火影忍者.png",
-      "src": "入坑和启蒙/火影忍者.png",
-      "category": 1,
-      "size": 57830,
-      "mtime": 1780972978000
+      "name": "吉他英雄！.jpg",
+      "src": "青春和热爱/吉他英雄！.jpg",
+      "category": 2,
+      "size": 1625041,
+      "mtime": 1781012670304.876
     },
     {
       "name": "结束乐队.jpg",
@@ -336,22 +357,22 @@ const GALLERY_MANIFEST = {
       "name": "利兹与青鸟.png",
       "src": "青春和热爱/利兹与青鸟.png",
       "category": 2,
-      "size": 61743,
-      "mtime": 1781001860834.033
+      "size": 209931,
+      "mtime": 1781000025396.355
     },
     {
       "name": "恋人不行.jpg",
-      "src": "近来的优秀作品/恋人不行.jpg",
-      "category": 4,
+      "src": "那些无可替代的夏天/恋人不行.jpg",
+      "category": 3,
       "size": 210977,
       "mtime": 1780972406000
     },
     {
       "name": "凉宫春日的消失.png",
-      "src": "入坑和启蒙/凉宫春日的消失.png",
-      "category": 1,
-      "size": 55361,
-      "mtime": 1780972978000
+      "src": "那些无可替代的夏天/凉宫春日的消失.png",
+      "category": 3,
+      "size": 178895,
+      "mtime": 1781000095409.6887
     },
     {
       "name": "灵感.jpg",
@@ -361,11 +382,11 @@ const GALLERY_MANIFEST = {
       "mtime": 1781002126457.6455
     },
     {
-      "name": "路人女主.png",
-      "src": "那些无可替代的夏天/路人女主.png",
+      "name": "路人女主的养成方法.png",
+      "src": "那些无可替代的夏天/路人女主的养成方法.png",
       "category": 3,
-      "size": 53246,
-      "mtime": 1780973198000
+      "size": 176805,
+      "mtime": 1780999864063.9646
     },
     {
       "name": "绿色.jpg",
@@ -385,8 +406,8 @@ const GALLERY_MANIFEST = {
       "name": "命运石之门.png",
       "src": "入坑和启蒙/命运石之门.png",
       "category": 1,
-      "size": 65177,
-      "mtime": 1780972980000
+      "size": 218032,
+      "mtime": 1781000225525.7178
     },
     {
       "name": "魔法少女的魔法裁判.jpg",
@@ -410,31 +431,11 @@ const GALLERY_MANIFEST = {
       "mtime": 1781001860784.275
     },
     {
-      "name": "你的名字.webp",
-      "src": "入坑和启蒙/你的名字.webp",
+      "name": "你的名字.png",
+      "src": "入坑和启蒙/你的名字.png",
       "category": 1,
-      "size": 21026,
-      "mtime": 1780999738032.5469
-    },
-    {
-      "name": "叛逆的鲁鲁修.png",
-      "src": "入坑和启蒙/叛逆的鲁鲁修.png",
-      "category": 1,
-      "size": 68870,
-      "mtime": 1780972980000
-    },
-    {
-      "name": "叛逆期.jpg",
-      "src": "近来的优秀作品/叛逆期.jpg",
-      "category": 4,
-      "size": 151562,
-      "mtime": 1780972406000,
-      "overrides": {
-        "title": "来自明天的礼物",
-        "category": 4,
-        "note": "",
-        "hidden": false
-      }
+      "size": 1223151,
+      "mtime": 1781013387454.4907
     },
     {
       "name": "千奈&广.jpg",
@@ -461,8 +462,8 @@ const GALLERY_MANIFEST = {
       "name": "轻音少女.png",
       "src": "入坑和启蒙/轻音少女.png",
       "category": 1,
-      "size": 51868,
-      "mtime": 1780972982000
+      "size": 176992,
+      "mtime": 1781000298368.771
     },
     {
       "name": "请问你今天要来点兔子吗？.jpg",
@@ -477,6 +478,13 @@ const GALLERY_MANIFEST = {
       "category": 4,
       "size": 285198,
       "mtime": 1780739527782.3174
+    },
+    {
+      "name": "人形电脑天使心.png",
+      "src": "那些无可替代的夏天/人形电脑天使心.png",
+      "category": 3,
+      "size": 1771936,
+      "mtime": 1781012687115.3616
     },
     {
       "name": "阮梅.jpg",
@@ -496,8 +504,8 @@ const GALLERY_MANIFEST = {
       "name": "赛马娘2.png",
       "src": "青春和热爱/赛马娘2.png",
       "category": 2,
-      "size": 63116,
-      "mtime": 1781001860892.4932
+      "size": 222437,
+      "mtime": 1781000283002.841
     },
     {
       "name": "森亚露露卡.jpg",
@@ -576,6 +584,13 @@ const GALLERY_MANIFEST = {
       "mtime": 1780972986000
     },
     {
+      "name": "水上由岐.jpg",
+      "src": "那些无可替代的夏天/水上由岐.jpg",
+      "category": 3,
+      "size": 3884659,
+      "mtime": 1781012731410.5874
+    },
+    {
       "name": "素晴日.jpg",
       "src": "那些无可替代的夏天/素晴日.jpg",
       "category": 3,
@@ -600,8 +615,8 @@ const GALLERY_MANIFEST = {
       "name": "天元突破！.png",
       "src": "那些无可替代的夏天/天元突破！.png",
       "category": 3,
-      "size": 63656,
-      "mtime": 1780973200000
+      "size": 229348,
+      "mtime": 1780999613081.8103
     },
     {
       "name": "为你，千千万万遍.jpg",
@@ -628,8 +643,8 @@ const GALLERY_MANIFEST = {
       "name": "我的青春恋爱物语果然有问题.png",
       "src": "入坑和启蒙/我的青春恋爱物语果然有问题.png",
       "category": 1,
-      "size": 57731,
-      "mtime": 1780972988000
+      "size": 197149,
+      "mtime": 1780999781462.407
     },
     {
       "name": "无名.jpg",
@@ -702,18 +717,11 @@ const GALLERY_MANIFEST = {
       "mtime": 1780972998000
     },
     {
-      "name": "学院偶像大师.jpg",
-      "src": "近来的优秀作品/学院偶像大师.jpg",
-      "category": 4,
-      "size": 84413,
-      "mtime": 1780972412000
-    },
-    {
       "name": "摇曳百合.png",
       "src": "青春和热爱/摇曳百合.png",
       "category": 2,
-      "size": 56008,
-      "mtime": 1781001860888.1855
+      "size": 191712,
+      "mtime": 1780999581041.0972
     },
     {
       "name": "遥奈&玲奈.jpg",
@@ -737,16 +745,9 @@ const GALLERY_MANIFEST = {
       "mtime": 1780972412000
     },
     {
-      "name": "游戏人生.png",
-      "src": "入坑和启蒙/游戏人生.png",
-      "category": 1,
-      "size": 72004,
-      "mtime": 1780972998000
-    },
-    {
       "name": "与你相恋至生命尽头.jpg",
-      "src": "近来的优秀作品/与你相恋至生命尽头.jpg",
-      "category": 4,
+      "src": "那些无可替代的夏天/与你相恋至生命尽头.jpg",
+      "category": 3,
       "size": 337241,
       "mtime": 1780999199656.4287
     },
@@ -789,15 +790,8 @@ const GALLERY_MANIFEST = {
       "name": "斩服少女.png",
       "src": "青春和热爱/斩服少女.png",
       "category": 2,
-      "size": 62201,
-      "mtime": 1781001860791.4592
-    },
-    {
-      "name": "战场原荡漾.jpg",
-      "src": "近来的优秀作品/战场原荡漾.jpg",
-      "category": 4,
-      "size": 733695,
-      "mtime": 1780972412000
+      "size": 219029,
+      "mtime": 1781000250608.9993
     },
     {
       "name": "知更鸟.jpg",
@@ -824,8 +818,8 @@ const GALLERY_MANIFEST = {
       "name": "紫罗兰永恒花园.png",
       "src": "那些无可替代的夏天/紫罗兰永恒花园.png",
       "category": 3,
-      "size": 47788,
-      "mtime": 1780973202000
+      "size": 172349,
+      "mtime": 1781000042751.2324
     },
     {
       "name": "最好的伙伴！.jpg",
@@ -884,6 +878,20 @@ const GALLERY_MANIFEST = {
       "mtime": 1780972400000
     },
     {
+      "name": "NARUTO.png",
+      "src": "入坑和启蒙/NARUTO.png",
+      "category": 1,
+      "size": 215469,
+      "mtime": 1780999647097.8997
+    },
+    {
+      "name": "NO GAME NO LIFE!.png",
+      "src": "入坑和启蒙/NO GAME NO LIFE!.png",
+      "category": 1,
+      "size": 253443,
+      "mtime": 1781000139869.6812
+    },
+    {
       "name": "P&S.png",
       "src": "那些无可替代的夏天/P&S.png",
       "category": 3,
@@ -903,6 +911,13 @@ const GALLERY_MANIFEST = {
       "category": 2,
       "size": 180922,
       "mtime": 1780739527709.8552
+    },
+    {
+      "name": "S&P.png",
+      "src": "那些无可替代的夏天/S&P.png",
+      "category": 3,
+      "size": 221556,
+      "mtime": 1781000011561.2942
     },
     {
       "name": "SBR.jpeg",
@@ -933,27 +948,5 @@ const GALLERY_MANIFEST = {
       "size": 1239949,
       "mtime": 1780726409480.0088
     }
-  ],
-  "imageOrder": {
-    "2": [
-      "波虹.webp",
-      "波凉.webp",
-      "虹凉.webp",
-      "波喜多.webp",
-      "超时空辉夜姬！.jpg",
-      "结束乐队.jpg",
-      "向日葵和小太阳.webp",
-      "请问你今天要来点兔子吗？.jpg",
-      "ROGER！.webp",
-      "生日快乐.jpg",
-      "天童爱丽丝.jpg",
-      "ALICE&KEY.jpg",
-      "物语.png",
-      "甚至能喜欢上恋爱中的自己.png",
-      "明日酱的水手服.png",
-      "夕立方程式.jpg",
-      "K-ON!.jpg",
-      "SBR.jpeg"
-    ]
-  }
+  ]
 };
