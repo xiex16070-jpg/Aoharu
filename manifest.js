@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:05:07.000Z
+// 生成时间: 2026-06-09T14:06:37.114Z
 // 图片总数: 127
-// 校验码: -1cac44a1
+// 校验码: 4492dd35
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:05:06.569Z",
-  "totalImages": 126,
+  "generated": "2026-06-09T14:06:36.485Z",
+  "totalImages": 124,
   "categories": [
     {
       "id": 1,
@@ -479,7 +479,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/千手百眼，天下人间.jpg",
       "category": 1,
       "size": 1413635,
-      "mtime": 1780972982000
+      "mtime": 1780972982000,
+      "overrides": {
+        "title": "千手百眼，天下人间",
+        "category": 1,
+        "note": "“唯有永恒，才最接近天理”",
+        "hidden": false
+      }
     },
     {
       "name": "秦谷美玲.jpg",
@@ -493,7 +499,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/轻音少女.png",
       "category": 1,
       "size": 176992,
-      "mtime": 1781000298368.771
+      "mtime": 1781000298368.771,
+      "overrides": {
+        "title": "轻音少女.png",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "请问你今天要来点兔子吗？.jpg",
@@ -590,7 +602,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/识之律者.jpg",
       "category": 1,
       "size": 244290,
-      "mtime": 1780972982000
+      "mtime": 1780972982000,
+      "overrides": {
+        "title": "识之律者",
+        "category": 1,
+        "note": "“伟大的识之律者女士万岁!”虽然到我退坑了还没抽到呜呜呜",
+        "hidden": false
+      }
     },
     {
       "name": "双子.jpeg",
@@ -674,7 +692,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/我的青春恋爱物语果然有问题.png",
       "category": 1,
       "size": 197149,
-      "mtime": 1780999781462.407
+      "mtime": 1780999781462.407,
+      "overrides": {
+        "title": "我的青春恋爱物语果然有问题.png",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "无名.jpg",
