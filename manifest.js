@@ -1,12 +1,12 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:03:47.767Z
+// 生成时间: 2026-06-09T14:05:07.000Z
 // 图片总数: 127
-// 校验码: -77beb54
+// 校验码: -1cac44a1
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:03:47.312Z",
-  "totalImages": 127,
+  "generated": "2026-06-09T14:05:06.569Z",
+  "totalImages": 126,
   "categories": [
     {
       "id": 1,
@@ -196,7 +196,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/东京食尸鬼.jpg",
       "category": 1,
       "size": 191116,
-      "mtime": 1781011836704.6262
+      "mtime": 1781011836704.6262,
+      "overrides": {
+        "title": "东京食尸鬼",
+        "category": 1,
+        "note": "“错的不是我...”",
+        "hidden": false
+      }
     },
     {
       "name": "二阶堂希罗.jpg",
@@ -315,7 +321,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/化物语.png",
       "category": 1,
       "size": 196643,
-      "mtime": 1780999979037.726
+      "mtime": 1780999979037.726,
+      "overrides": {
+        "title": "化物语.png",
+        "category": 1,
+        "note": "",
+        "hidden": true
+      }
     },
     {
       "name": "吉他英雄！.jpg",
@@ -413,7 +425,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/命运石之门.png",
       "category": 1,
       "size": 218032,
-      "mtime": 1781000225525.7178
+      "mtime": 1781000225525.7178,
+      "overrides": {
+        "title": "命运石之门",
+        "category": 1,
+        "note": "“一切都是命运石之门的选择”",
+        "hidden": false
+      }
     },
     {
       "name": "魔法少女的魔法裁判.jpg",
@@ -441,7 +459,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/你的名字.png",
       "category": 1,
       "size": 1223151,
-      "mtime": 1781013387454.4907
+      "mtime": 1781013387454.4907,
+      "overrides": {
+        "title": "你的名字",
+        "category": 1,
+        "note": "“你的.....名字是————”",
+        "hidden": false
+      }
     },
     {
       "name": "千奈&广.jpg",
