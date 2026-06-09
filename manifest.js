@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T13:58:04.850Z
+// 生成时间: 2026-06-09T14:03:47.767Z
 // 图片总数: 127
-// 校验码: 45ec0a90f3b226ec
+// 校验码: -77beb54
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T13:58:04.850Z",
+  "generated": "2026-06-09T14:03:47.312Z",
   "totalImages": 127,
   "categories": [
     {
@@ -169,7 +169,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/刀剑神域.jpg",
       "category": 1,
       "size": 226809,
-      "mtime": 1780972978000
+      "mtime": 1780972978000,
+      "overrides": {
+        "title": "刀剑神域",
+        "category": 1,
+        "note": "夢で高く跳んだ！\n追逐吧 因为梦想而高飞！",
+        "hidden": false
+      }
     },
     {
       "name": "第一苍系.jpg",
@@ -948,5 +954,27 @@ const GALLERY_MANIFEST = {
       "size": 1239949,
       "mtime": 1780726409480.0088
     }
-  ]
+  ],
+  "imageOrder": {
+    "2": [
+      "波虹.webp",
+      "波凉.webp",
+      "虹凉.webp",
+      "波喜多.webp",
+      "超时空辉夜姬！.jpg",
+      "结束乐队.jpg",
+      "向日葵和小太阳.webp",
+      "请问你今天要来点兔子吗？.jpg",
+      "ROGER！.webp",
+      "生日快乐.jpg",
+      "天童爱丽丝.jpg",
+      "ALICE&KEY.jpg",
+      "物语.png",
+      "甚至能喜欢上恋爱中的自己.png",
+      "明日酱的水手服.png",
+      "夕立方程式.jpg",
+      "K-ON!.jpg",
+      "SBR.jpeg"
+    ]
+  }
 };
