@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:10:12.114Z
+// 生成时间: 2026-06-09T14:11:41.575Z
 // 图片总数: 127
-// 校验码: c49f61f
+// 校验码: -565c2495
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:10:11.534Z",
+  "generated": "2026-06-09T14:10:52.843Z",
   "totalImages": 124,
   "categories": [
     {
@@ -985,7 +985,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/NO GAME NO LIFE!.png",
       "category": 1,
       "size": 253443,
-      "mtime": 1781000139869.6812
+      "mtime": 1781000139869.6812,
+      "overrides": {
+        "title": "NO GAME NO LIFE!",
+        "category": 1,
+        "note": "空白永不败北！",
+        "hidden": false
+      }
     },
     {
       "name": "P&S.png",
@@ -1046,6 +1052,25 @@ const GALLERY_MANIFEST = {
     }
   ],
   "imageOrder": {
+    "1": [
+      "东京食尸鬼.jpg",
+      "刀剑神域.jpg",
+      "命运石之门.png",
+      "你的名字.png",
+      "魔法少女小圆.jpg",
+      "千手百眼，天下人间.jpg",
+      "水的女儿.jpg",
+      "我不曾忘记.jpg",
+      "识之律者.jpg",
+      "夕立方程式.jpg",
+      "薪炎永燃.jpg",
+      "羽渡尘.jpg",
+      "中二病也要谈恋爱！.jpg",
+      "最好的伙伴！.jpg",
+      "K-ON!.jpg",
+      "NARUTO.png",
+      "NO GAME NO LIFE!.png"
+    ],
     "2": [
       "波虹.webp",
       "波凉.webp",
