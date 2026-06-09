@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:13:11.776Z
+// 生成时间: 2026-06-09T15:26:25.218Z
 // 图片总数: 127
-// 校验码: -9138e2fe
+// 校验码: 1e794d7d
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:13:11.222Z",
+  "generated": "2026-06-09T15:26:24.658Z",
   "totalImages": 124,
   "categories": [
     {
@@ -642,7 +642,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/水上由岐.jpg",
       "category": 3,
       "size": 3884659,
-      "mtime": 1781012731410.5874
+      "mtime": 1781012731410.5874,
+      "overrides": {
+        "title": "水上由岐",
+        "category": 3,
+        "note": "果然好女人需要的是",
+        "hidden": false
+      }
     },
     {
       "name": "素晴日.jpg",
