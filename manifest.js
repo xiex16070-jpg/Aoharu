@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:09:03.701Z
+// 生成时间: 2026-06-09T14:10:12.114Z
 // 图片总数: 127
-// 校验码: 3ec17c3e
+// 校验码: c49f61f
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:08:51.853Z",
+  "generated": "2026-06-09T14:10:11.534Z",
   "totalImages": 124,
   "categories": [
     {
@@ -877,7 +877,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/中二病也要谈恋爱！.jpg",
       "category": 1,
       "size": 421122,
-      "mtime": 1780973000000
+      "mtime": 1780973000000,
+      "overrides": {
+        "title": "中二病也要谈恋爱！",
+        "category": 1,
+        "note": "邪王真眼是最强的！",
+        "hidden": false
+      }
     },
     {
       "name": "终末少女旅行.jpg",
@@ -898,7 +904,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/最好的伙伴！.jpg",
       "category": 1,
       "size": 217928,
-      "mtime": 1780973000000
+      "mtime": 1780973000000,
+      "overrides": {
+        "title": "最好的伙伴！",
+        "category": 1,
+        "note": "“派蒙！最好的伙伴！”",
+        "hidden": false
+      }
     },
     {
       "name": "ALICE&KEY.jpg",
@@ -940,7 +952,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/K-ON!.jpg",
       "category": 1,
       "size": 193941,
-      "mtime": 1780972978000
+      "mtime": 1780972978000,
+      "overrides": {
+        "title": "K-ON!",
+        "category": 1,
+        "note": "“我还记得第一次遇到你时，我的心是怎样的跳动”",
+        "hidden": false
+      }
     },
     {
       "name": "kotone.jpg",
@@ -954,7 +972,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/NARUTO.png",
       "category": 1,
       "size": 215469,
-      "mtime": 1780999647097.8997
+      "mtime": 1780999647097.8997,
+      "overrides": {
+        "title": "NARUTO",
+        "category": 1,
+        "note": "青春也不过一袭剪影",
+        "hidden": false
+      }
     },
     {
       "name": "NO GAME NO LIFE!.png",
