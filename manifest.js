@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T10:52:19.416Z
+// 生成时间: 2026-06-09T13:30:03.083Z
 // 图片总数: 124
-// 校验码: 1662dd77cff829dc
+// 校验码: 67c725b5
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T10:52:19.416Z",
+  "generated": "2026-06-09T13:30:02.429Z",
   "totalImages": 124,
   "categories": [
     {
@@ -428,7 +428,13 @@ const GALLERY_MANIFEST = {
       "src": "近来的优秀作品/叛逆期.jpg",
       "category": 4,
       "size": 151562,
-      "mtime": 1780972406000
+      "mtime": 1780972406000,
+      "overrides": {
+        "title": "来自明天的礼物",
+        "category": 4,
+        "note": "",
+        "hidden": false
+      }
     },
     {
       "name": "千奈&广.jpg",
@@ -533,7 +539,13 @@ const GALLERY_MANIFEST = {
       "src": "那些无可替代的夏天/生生不息.jpg",
       "category": 3,
       "size": 76084,
-      "mtime": 1780973198000
+      "mtime": 1780973198000,
+      "overrides": {
+        "title": "绿色 生命",
+        "category": 3,
+        "note": "",
+        "hidden": false
+      }
     },
     {
       "name": "识之律者.jpg",
@@ -921,5 +933,27 @@ const GALLERY_MANIFEST = {
       "size": 1239949,
       "mtime": 1780726409480.0088
     }
-  ]
+  ],
+  "imageOrder": {
+    "2": [
+      "波虹.webp",
+      "波凉.webp",
+      "虹凉.webp",
+      "波喜多.webp",
+      "超时空辉夜姬！.jpg",
+      "结束乐队.jpg",
+      "向日葵和小太阳.webp",
+      "请问你今天要来点兔子吗？.jpg",
+      "ROGER！.webp",
+      "生日快乐.jpg",
+      "天童爱丽丝.jpg",
+      "ALICE&KEY.jpg",
+      "物语.png",
+      "甚至能喜欢上恋爱中的自己.png",
+      "明日酱的水手服.png",
+      "夕立方程式.jpg",
+      "K-ON!.jpg",
+      "SBR.jpeg"
+    ]
+  }
 };
