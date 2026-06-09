@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:06:37.114Z
+// 生成时间: 2026-06-09T14:07:59.755Z
 // 图片总数: 127
-// 校验码: 4492dd35
+// 校验码: f4e638c
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:06:36.485Z",
+  "generated": "2026-06-09T14:07:59.050Z",
   "totalImages": 124,
   "categories": [
     {
@@ -629,7 +629,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/水的女儿.jpg",
       "category": 1,
       "size": 1231102,
-      "mtime": 1780972986000
+      "mtime": 1780972986000,
+      "overrides": {
+        "title": "水的女儿",
+        "category": 1,
+        "note": "“仿若无因飘落的细雨”",
+        "hidden": false
+      }
     },
     {
       "name": "水上由岐.jpg",
@@ -685,7 +691,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/我不曾忘记.jpg",
       "category": 1,
       "size": 982557,
-      "mtime": 1780972988000
+      "mtime": 1780972988000,
+      "overrides": {
+        "title": "我不曾忘记",
+        "category": 1,
+        "note": "“是你吗，在某一天默默消失在春天的遥望”\n\"可我呀,记得你的所有，我不会忘，我不会忘\"",
+        "hidden": false
+      }
     },
     {
       "name": "我的青春恋爱物语果然有问题.png",
