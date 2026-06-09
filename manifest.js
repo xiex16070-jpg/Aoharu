@@ -1,11 +1,11 @@
 // 自动生成 — 请勿手动编辑
-// 生成时间: 2026-06-09T14:11:41.575Z
+// 生成时间: 2026-06-09T14:13:11.776Z
 // 图片总数: 127
-// 校验码: -565c2495
+// 校验码: -9138e2fe
 // 运行 node scan-manifest.js 刷新
 
 const GALLERY_MANIFEST = {
-  "generated": "2026-06-09T14:10:52.843Z",
+  "generated": "2026-06-09T14:13:11.222Z",
   "totalImages": 124,
   "categories": [
     {
@@ -835,7 +835,13 @@ const GALLERY_MANIFEST = {
       "src": "入坑和启蒙/羽渡尘.jpg",
       "category": 1,
       "size": 165213,
-      "mtime": 1780972998000
+      "mtime": 1780972998000,
+      "overrides": {
+        "title": "羽渡尘",
+        "category": 1,
+        "note": "千年之羽 归于此处",
+        "hidden": false
+      }
     },
     {
       "name": "玉子爱情故事.png",
